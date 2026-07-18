@@ -25,3 +25,19 @@
 ## Rules
 
 Defect fixes begin with a regression test where practical. Tests use deterministic factories from `packages/test-utils` and synthetic data only. Test business outcomes, not private implementation details. A release cannot replace a failed security, migration, or payment test with a manual claim.
+
+## Local commands
+
+| Command                 | Scope                                                     |
+| ----------------------- | --------------------------------------------------------- |
+| `pnpm test:unit`        | Pure domain, validation, utility, and component behavior. |
+| `pnpm test:contract`    | Shared DTO and boundary-schema compatibility.             |
+| `pnpm test:integration` | Services, adapters, repositories, and network boundaries. |
+| `pnpm test:coverage`    | Unit and contract coverage with enforced thresholds.      |
+| `pnpm test:e2e:smoke`   | Critical product-core and admin browser paths.            |
+| `pnpm test:e2e`         | Full configured Playwright matrix.                        |
+| `pnpm validate`         | Merge-blocking local non-browser validation.              |
+
+Vitest projects are defined centrally in `vitest.config.ts`. Unit tests live beside their owning workspace under `tests/`; cross-package contract and integration suites live under root `tests/contract` and `tests/integration`. Playwright owns `tests/e2e` and starts both Next.js applications automatically.
+
+The integration setup rejects unhandled network requests. A test that calls an external provider must declare an MSW handler or intentionally use a separately documented sandbox adapter.

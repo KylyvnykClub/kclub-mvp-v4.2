@@ -9,7 +9,7 @@
     "zod": "^4.0.0"
   },
   "scripts": {
-    "lint": "eslint src --max-warnings=0",
+    "lint": "eslint src tests --max-warnings=0",
     "typecheck": "tsc --noEmit"
   }
 }

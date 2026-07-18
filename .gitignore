@@ -9,5 +9,6 @@ test-results/
 .env.*
 !.env.example
 .gitnexus/
+.claude/settings.local.json
 *.tsbuildinfo
 packages/database/generated/

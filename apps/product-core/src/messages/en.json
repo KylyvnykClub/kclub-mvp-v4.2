@@ -1,0 +1,170 @@
+{
+  "home": {
+    "meta": {
+      "siteName": "KYLYVNYK CLUB",
+      "title": "KYLYVNYK CLUB — trusted business connections",
+      "description": "A private membership club for trusted business connections, thoughtful introductions and practical exchange."
+    },
+    "nav": {
+      "homeLabel": "KYLYVNYK CLUB home",
+      "label": "Primary navigation",
+      "about": "About",
+      "how": "How it works",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "join": "Apply",
+      "menu": "Menu",
+      "close": "Close"
+    },
+    "hero": {
+      "eyebrow": "Private membership community",
+      "title": "Trusted connections for people building meaningful businesses.",
+      "lead": "KYLYVNYK CLUB brings carefully selected members together around trust, practical exchange and long-term opportunity.",
+      "primary": "Apply for membership",
+      "secondary": "Discover the club",
+      "noteLabel": "Membership principle",
+      "noteBadge": "By review",
+      "note": "Membership is considered individually so the community stays useful, respectful and relevant."
+    },
+    "stats": {
+      "label": "Club principles",
+      "trust": { "eyebrow": "Trust", "label": "Relationships before transactions" },
+      "access": { "eyebrow": "Access", "label": "A focused circle, not an open feed" },
+      "growth": { "eyebrow": "Growth", "label": "Opportunities created through contribution" }
+    },
+    "about": {
+      "eyebrow": "The club",
+      "title": "A stronger environment for business relationships.",
+      "lead": "The club is designed for people who value context, reputation and a thoughtful introduction over cold outreach.",
+      "community": {
+        "title": "Curated community",
+        "text": "Members join through a review process that protects the quality of the network."
+      },
+      "standards": {
+        "title": "Clear standards",
+        "text": "Respect, discretion and responsible conduct shape every interaction."
+      },
+      "reciprocity": {
+        "title": "Useful reciprocity",
+        "text": "The network works when members share insight, access and support with care."
+      }
+    },
+    "plan": {
+      "eyebrow": "Membership value",
+      "title": "One membership, three practical layers.",
+      "lead": "A simple structure helps members be understood, discover the right people and act on relevant opportunities.",
+      "profile": {
+        "badge": "Identity",
+        "title": "A credible member profile",
+        "text": "Present your experience, interests and business context clearly."
+      },
+      "network": {
+        "badge": "Connections",
+        "title": "A navigable network",
+        "text": "Find relevant members and businesses without the noise of a public social feed."
+      },
+      "opportunities": {
+        "badge": "Exchange",
+        "title": "Warm introductions",
+        "text": "Request or offer introductions with enough context for a useful response."
+      }
+    },
+    "how": {
+      "eyebrow": "How it works",
+      "title": "Designed for deliberate participation.",
+      "lead": "The experience favours quality of context over volume of activity.",
+      "statement": "You build trust by showing who you are, what you can contribute and what kind of connection would be genuinely useful.",
+      "detail": "Member profiles, business pages and introduction requests share a consistent structure. This makes it easier to assess relevance before starting a conversation."
+    },
+    "steps": {
+      "apply": {
+        "title": "Submit an application",
+        "text": "Tell us about your background, business context and reasons for joining."
+      },
+      "review": {
+        "title": "Complete the review",
+        "text": "The club checks fit and may ask for additional context before making a decision."
+      },
+      "connect": {
+        "title": "Enter with context",
+        "text": "Build your profile, explore the network and start with thoughtful introductions."
+      }
+    },
+    "testimonials": {
+      "eyebrow": "Member perspective",
+      "title": "What the club experience is intended to feel like.",
+      "lead": "These statements describe the product promise; verified member stories will replace them when approved evidence is available.",
+      "one": {
+        "quote": "A place where an introduction arrives with enough context to make the next conversation worthwhile.",
+        "attribution": "Experience principle — contextual connection"
+      },
+      "two": {
+        "quote": "A network where contribution and reputation matter more than reach.",
+        "attribution": "Experience principle — trusted participation"
+      }
+    },
+    "cta": {
+      "title": "Ready to contribute to a trusted circle?",
+      "lead": "Start with a short application. Membership is reviewed individually.",
+      "button": "Apply for membership"
+    },
+    "faq": {
+      "eyebrow": "Questions",
+      "title": "What to know before applying.",
+      "lead": "Clear expectations help protect the quality of the community.",
+      "membership": {
+        "question": "Who is membership for?",
+        "answer": "The club is intended for founders, operators, specialists and investors who can participate responsibly and contribute useful context."
+      },
+      "business": {
+        "question": "Do I need to own a business?",
+        "answer": "No. Your professional experience and ability to contribute matter more than a specific job title or ownership status."
+      },
+      "privacy": {
+        "question": "Is member information public?",
+        "answer": "Member-only information is shown according to product access rules. Approved business information may appear in the public directory."
+      },
+      "timing": {
+        "question": "How long does review take?",
+        "answer": "Review timing depends on the context supplied. We do not publish a fixed promise until operational data supports one."
+      }
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "Have a question before you apply?",
+      "lead": "Validate your message here. Online delivery is not enabled yet, so no data is sent or stored.",
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "company": "Company (optional)",
+        "phone": "Phone (optional)",
+        "message": "Message",
+        "website": "Website",
+        "privacy": "Demo form: validation happens in this browser; your message is not submitted or stored.",
+        "submit": "Validate message",
+        "successTitle": "Your message is valid",
+        "successText": "Nothing was sent or stored. Contact delivery will be enabled in a separate product slice.",
+        "again": "Write another message",
+        "errors": {
+          "nameRequired": "Enter your name.",
+          "nameTooLong": "Name is too long.",
+          "emailInvalid": "Enter a valid email address.",
+          "companyTooLong": "Company name is too long.",
+          "phoneTooLong": "Phone number is too long.",
+          "messageTooShort": "Write at least 10 characters.",
+          "messageTooLong": "Message is too long."
+        }
+      }
+    },
+    "footer": {
+      "tagline": "Trusted connections, built with context.",
+      "navigate": "Navigate",
+      "about": "About",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "languages": "Language",
+      "copyright": "© KYLYVNYK CLUB",
+      "status": "MVP marketing experience"
+    }
+  }
+}

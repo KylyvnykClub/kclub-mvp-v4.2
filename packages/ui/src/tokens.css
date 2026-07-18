@@ -1,12 +1,101 @@
 :root {
+  /* Color palette — primary scale */
   --kc-color-canvas: #f7f7f5;
   --kc-color-ink: #171717;
   --kc-color-muted: #626262;
   --kc-color-accent: #c11f1f;
   --kc-color-line: #d7d7d2;
+
+  /* Color palette — semantic aliases */
+  --kc-color-surface: #ffffff;
+  --kc-color-surface-muted: #efefec;
+  --kc-color-border: var(--kc-color-line);
+  --kc-color-accent-strong: #9a1818;
+  --kc-color-on-accent: #ffffff;
+  --kc-color-footer-line: rgba(255, 255, 255, 0.15);
+
+  /* Spacing scale (rem) */
+  --kc-space-1: 0.25rem;
+  --kc-space-2: 0.5rem;
+  --kc-space-3: 0.75rem;
   --kc-space-4: 1rem;
+  --kc-space-5: 1.25rem;
+  --kc-space-6: 1.5rem;
   --kc-space-8: 2rem;
+  --kc-space-10: 2.5rem;
+  --kc-space-12: 3rem;
   --kc-space-16: 4rem;
+  --kc-space-20: 5rem;
+  --kc-space-24: 6rem;
+  --kc-space-32: 8rem;
+
+  /* Typography — families */
   --kc-font-sans: Arial, Helvetica, sans-serif;
+  --kc-font-display: var(--kc-font-sans);
+
+  /* Typography — sizes (rem; mobile-first, no viewport units per DESIGN_SYSTEM) */
+  --kc-font-size-xs: 0.75rem;
+  --kc-font-size-sm: 0.875rem;
+  --kc-font-size-md: 1rem;
+  --kc-font-size-lg: 1.125rem;
+  --kc-font-size-xl: 1.375rem;
+  --kc-font-size-2xl: 1.75rem;
+  --kc-font-size-3xl: 2.25rem;
+  --kc-font-size-4xl: 3rem;
+
+  /* Typography — line heights */
+  --kc-line-height-tight: 1.1;
+  --kc-line-height-snug: 1.25;
+  --kc-line-height-normal: 1.5;
+  --kc-line-height-relaxed: 1.7;
+
+  /* Typography — weights */
+  --kc-font-weight-regular: 400;
+  --kc-font-weight-medium: 500;
+  --kc-font-weight-semibold: 600;
+  --kc-font-weight-bold: 700;
+
+  /* Typography — letter spacing */
+  --kc-letter-spacing-tight: -0.01em;
+  --kc-letter-spacing-wide: 0.08em;
+
+  /* Radius */
+  --kc-radius-sm: 0.25rem;
+  --kc-radius-md: 0.5rem;
+  --kc-radius-lg: 1rem;
+  --kc-radius-full: 9999rem;
+
+  /* Border */
+  --kc-border-width-1: 1px;
+  --kc-border-width-2: 2px;
+
+  /* Shadow / elevation */
+  --kc-shadow-sm: 0 1px 2px rgba(23, 23, 23, 0.06);
+  --kc-shadow-md: 0 4px 16px rgba(23, 23, 23, 0.08);
+  --kc-shadow-lg: 0 12px 32px rgba(23, 23, 23, 0.12);
+
+  /* Z-index scale */
+  --kc-z-base: 1;
+  --kc-z-sticky: 100;
+  --kc-z-header: 200;
+  --kc-z-overlay: 1000;
+
+  /* Motion */
+  --kc-duration-fast: 120ms;
+  --kc-duration-normal: 200ms;
+  --kc-duration-slow: 320ms;
+  --kc-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout — container widths */
   --kc-width-content: 72rem;
+  --kc-width-narrow: 48rem;
+  --kc-width-wide: 80rem;
+  --kc-size-control-sm: 2.25rem;
+  --kc-size-control-md: 2.75rem;
+  --kc-size-control-lg: 3.25rem;
+  --kc-size-step: 2.5rem;
+  --kc-size-textarea: 7.5rem;
+  --kc-size-header: 4rem;
+  --kc-layout-sidebar: 22rem;
+  --kc-layout-hide-offset: -10000px;
 }

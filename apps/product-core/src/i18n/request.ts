@@ -1,0 +1,21 @@
+import { getRequestConfig } from 'next-intl/server';
+
+import { routing } from './routing';
+
+/**
+ * Per-request i18n configuration (ADR-010).
+ * Loads the matching locale catalog from `messages/<locale>.json`.
+ */
+export default getRequestConfig(async ({ requestLocale }) => {
+  let locale = await requestLocale;
+
+  // Validate that the resolved locale is supported.
+  if (!locale || !routing.locales.includes(locale as (typeof routing.locales)[number])) {
+    locale = routing.defaultLocale;
+  }
+
+  return {
+    locale,
+    messages: (await import(`../messages/${locale}.json`)).default,
+  };
+});

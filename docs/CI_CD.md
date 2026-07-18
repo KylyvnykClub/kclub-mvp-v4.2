@@ -4,6 +4,8 @@
 
 GitHub Actions runs deterministic installation from the pinned pnpm lockfile, formatting, lint, TypeScript checks, unit tests, contract/integration tests, Prisma validation and migration-drift checks, build, dependency/security scan, and focused Playwright smoke coverage. A failing check blocks merge.
 
+The implemented baseline currently runs formatting, lint, typecheck, unit, contract, integration, build, Prisma schema validation, and Playwright smoke coverage on every pull request. Migration-drift, dependency/secret scanning, and deployment smoke automation remain release-foundation work and must not be reported as active until their workflows exist.
+
 ## Deployment flow
 
 ```text

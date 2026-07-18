@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@kclub/ui": "workspace:*",
+    "@kclub/validation": "workspace:*",
     "next": "^16.2.9",
+    "next-intl": "^4.13.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

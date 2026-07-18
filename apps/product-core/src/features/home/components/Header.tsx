@@ -1,0 +1,37 @@
+import { getTranslations } from 'next-intl/server';
+
+import { Link } from '../../../i18n/navigation';
+import { MobileNav } from './MobileNav';
+
+export async function Header() {
+  const t = await getTranslations('home');
+  const links = [
+    { href: '#about', label: t('nav.about') },
+    { href: '#how-it-works', label: t('nav.how') },
+    { href: '#faq', label: t('nav.faq') },
+    { href: '#contact', label: t('nav.contact') },
+  ];
+
+  return (
+    <header className="kc-header" data-section="header">
+      <div className="kc-container kc-header-inner">
+        <Link className="kc-brand kc-focus-ring" href="/" aria-label={t('nav.homeLabel')}>
+          KYLYVNYK CLUB
+        </Link>
+        <nav className="kc-nav" aria-label={t('nav.label')}>
+          {links.map((link) => (
+            <a className="kc-nav-link kc-focus-ring" href={link.href} key={link.href}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+        <div className="kc-header-actions">
+          <a className="kc-button kc-focus-ring kc-header-cta" data-size="sm" href="#contact">
+            {t('nav.join')}
+          </a>
+          <MobileNav links={links} label={t('nav.menu')} closeLabel={t('nav.close')} />
+        </div>
+      </div>
+    </header>
+  );
+}
