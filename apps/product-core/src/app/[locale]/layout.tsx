@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
 
 import { routing } from '../../i18n/routing';
+import { AppThemeProvider } from '../../features/theme/AppThemeProvider';
 
 type LocaleLayoutProps = Readonly<{
   children: ReactNode;
@@ -52,9 +53,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   setRequestLocale(locale);
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className="kc-app">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <AppThemeProvider>{children}</AppThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -13,6 +13,21 @@
   --kc-color-accent-strong: #9a1818;
   --kc-color-on-accent: #ffffff;
   --kc-color-footer-line: rgba(255, 255, 255, 0.15);
+  --kc-color-footer: #171717;
+  --kc-color-on-footer: #ffffff;
+
+  /* Dark palette — mapped to semantic tokens in theme.css */
+  --kc-palette-dark-canvas: #0d0d0c;
+  --kc-palette-dark-ink: #f3f3ef;
+  --kc-palette-dark-muted: #aaa9a4;
+  --kc-palette-dark-line: #353532;
+  --kc-palette-dark-surface: #171716;
+  --kc-palette-dark-surface-muted: #222220;
+  --kc-palette-dark-accent: #e05252;
+  --kc-palette-dark-accent-strong: #ef6a6a;
+  --kc-palette-dark-on-accent: #ffffff;
+  --kc-palette-dark-footer: #080808;
+  --kc-palette-dark-on-footer: #f3f3ef;
 
   /* Spacing scale (rem) */
   --kc-space-1: 0.25rem;
@@ -73,6 +88,9 @@
   --kc-shadow-sm: 0 1px 2px rgba(23, 23, 23, 0.06);
   --kc-shadow-md: 0 4px 16px rgba(23, 23, 23, 0.08);
   --kc-shadow-lg: 0 12px 32px rgba(23, 23, 23, 0.12);
+  --kc-shadow-dark-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --kc-shadow-dark-md: 0 4px 16px rgba(0, 0, 0, 0.38);
+  --kc-shadow-dark-lg: 0 12px 32px rgba(0, 0, 0, 0.46);
 
   /* Z-index scale */
   --kc-z-base: 1;

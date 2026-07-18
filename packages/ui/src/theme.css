@@ -1,0 +1,22 @@
+:root {
+  color-scheme: light;
+}
+
+:root.dark {
+  color-scheme: dark;
+  --kc-color-canvas: var(--kc-palette-dark-canvas);
+  --kc-color-ink: var(--kc-palette-dark-ink);
+  --kc-color-muted: var(--kc-palette-dark-muted);
+  --kc-color-line: var(--kc-palette-dark-line);
+  --kc-color-surface: var(--kc-palette-dark-surface);
+  --kc-color-surface-muted: var(--kc-palette-dark-surface-muted);
+  --kc-color-border: var(--kc-palette-dark-line);
+  --kc-color-accent: var(--kc-palette-dark-accent);
+  --kc-color-accent-strong: var(--kc-palette-dark-accent-strong);
+  --kc-color-on-accent: var(--kc-palette-dark-on-accent);
+  --kc-color-footer: var(--kc-palette-dark-footer);
+  --kc-color-on-footer: var(--kc-palette-dark-on-footer);
+  --kc-shadow-sm: var(--kc-shadow-dark-sm);
+  --kc-shadow-md: var(--kc-shadow-dark-md);
+  --kc-shadow-lg: var(--kc-shadow-dark-lg);
+}

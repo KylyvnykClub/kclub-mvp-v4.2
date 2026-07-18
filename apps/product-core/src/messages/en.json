@@ -16,6 +16,7 @@
       "menu": "Menu",
       "close": "Close"
     },
+    "theme": { "light": "Use light theme", "dark": "Use dark theme" },
     "hero": {
       "eyebrow": "Private membership community",
       "title": "Trusted connections for people building meaningful businesses.",
@@ -164,7 +165,8 @@
       "contact": "Contact",
       "languages": "Language",
       "copyright": "© KYLYVNYK CLUB",
-      "status": "MVP marketing experience"
+      "status": "MVP marketing experience",
+      "theme": { "light": "Use light theme", "dark": "Use dark theme" }
     }
   }
 }

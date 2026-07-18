@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { Link } from '../../../i18n/navigation';
 import { MobileNav } from './MobileNav';
+import { ThemeToggle } from '../../theme/ThemeToggle';
 
 export async function Header() {
   const t = await getTranslations('home');
@@ -26,6 +27,7 @@ export async function Header() {
           ))}
         </nav>
         <div className="kc-header-actions">
+          <ThemeToggle lightLabel={t('theme.light')} darkLabel={t('theme.dark')} />
           <a className="kc-button kc-focus-ring kc-header-cta" data-size="sm" href="#contact">
             {t('nav.join')}
           </a>
