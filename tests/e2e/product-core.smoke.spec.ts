@@ -16,3 +16,22 @@ test('@smoke redirects the bare route to the default locale', async ({ page }) =
   await page.goto('/');
   await expect(page).toHaveURL(/\/en$/);
 });
+
+test('@smoke switches and persists the color theme', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'light' });
+  await page.goto('/en');
+
+  const header = page.locator('[data-section="header"]');
+  const darkToggle = header.getByRole('button', { name: 'Use dark theme' });
+  await expect(darkToggle).toBeEnabled();
+  await darkToggle.click();
+
+  await expect(page.locator('html')).toHaveClass(/dark/);
+  await expect(header.getByRole('button', { name: 'Use light theme' })).toBeEnabled();
+
+  await page.reload();
+  await expect(page.locator('html')).toHaveClass(/dark/);
+
+  await header.getByRole('button', { name: 'Use light theme' }).click();
+  await expect(page.locator('html')).not.toHaveClass(/dark/);
+});

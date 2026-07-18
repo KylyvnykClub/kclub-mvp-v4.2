@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '../../../i18n/navigation';
+import { ThemeToggle } from '../../theme/ThemeToggle';
 
 export async function Footer() {
   const t = await getTranslations('home.footer');
@@ -54,7 +55,10 @@ export async function Footer() {
         </div>
         <div className="kc-footer-bottom">
           <span>{t('copyright')}</span>
-          <span>{t('status')}</span>
+          <div className="kc-cluster">
+            <span>{t('status')}</span>
+            <ThemeToggle lightLabel={t('theme.light')} darkLabel={t('theme.dark')} />
+          </div>
         </div>
       </div>
     </footer>
