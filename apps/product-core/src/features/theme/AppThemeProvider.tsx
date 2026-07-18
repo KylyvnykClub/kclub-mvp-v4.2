@@ -5,7 +5,12 @@ import type { ReactNode } from 'react';
 
 export function AppThemeProvider({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+    <ThemeProvider
+      attribute="data-theme"
+      defaultTheme="dark"
+      enableSystem={false}
+      disableTransitionOnChange
+    >
       {children}
     </ThemeProvider>
   );

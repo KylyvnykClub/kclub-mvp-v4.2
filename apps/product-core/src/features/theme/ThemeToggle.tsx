@@ -26,7 +26,7 @@ export function ThemeToggle({ lightLabel, darkLabel }: ThemeToggleProps) {
       disabled={!mounted}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
     >
-      <span aria-hidden="true">{isDark ? '☀' : '☾'}</span>
+      <span className="kc-theme-toggle-mark" aria-hidden="true" />
       <span className="kc-theme-toggle-label">{label}</span>
     </button>
   );

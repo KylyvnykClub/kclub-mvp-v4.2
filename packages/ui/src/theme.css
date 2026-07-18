@@ -1,22 +1,18 @@
-:root {
+/*
+ * Light theme — opt-in via [data-theme='light'] (set by next-themes).
+ * Dark is the default (see tokens.css). Surfaces, text, borders flip;
+ * accent + brand stay constant, per the KYLYVNYK CLUB Design System.
+ */
+[data-theme='light'] {
+  --kc-bg: #ffffff;
+  --kc-surface: #fafafa;
+  --kc-surface-2: #f4f4f5;
+  --kc-surface-hover: #f0f0f0;
+  --kc-border: #e4e4e7;
+  --kc-border-strong: #d1d1d6;
+  --kc-text: #09090b;
+  --kc-text-muted: #71717a;
+  --kc-text-faint: #a1a1aa;
+  --kc-text-inverse: #ffffff;
   color-scheme: light;
-}
-
-:root.dark {
-  color-scheme: dark;
-  --kc-color-canvas: var(--kc-palette-dark-canvas);
-  --kc-color-ink: var(--kc-palette-dark-ink);
-  --kc-color-muted: var(--kc-palette-dark-muted);
-  --kc-color-line: var(--kc-palette-dark-line);
-  --kc-color-surface: var(--kc-palette-dark-surface);
-  --kc-color-surface-muted: var(--kc-palette-dark-surface-muted);
-  --kc-color-border: var(--kc-palette-dark-line);
-  --kc-color-accent: var(--kc-palette-dark-accent);
-  --kc-color-accent-strong: var(--kc-palette-dark-accent-strong);
-  --kc-color-on-accent: var(--kc-palette-dark-on-accent);
-  --kc-color-footer: var(--kc-palette-dark-footer);
-  --kc-color-on-footer: var(--kc-palette-dark-on-footer);
-  --kc-shadow-sm: var(--kc-shadow-dark-sm);
-  --kc-shadow-md: var(--kc-shadow-dark-md);
-  --kc-shadow-lg: var(--kc-shadow-dark-lg);
 }
