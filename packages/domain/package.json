@@ -1,0 +1,13 @@
+{
+  "name": "@kclub/domain",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint src tests --max-warnings=0",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  }
+}

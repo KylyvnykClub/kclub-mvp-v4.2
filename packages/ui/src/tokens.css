@@ -1,0 +1,12 @@
+:root {
+  --kc-color-canvas: #f7f7f5;
+  --kc-color-ink: #171717;
+  --kc-color-muted: #626262;
+  --kc-color-accent: #c11f1f;
+  --kc-color-line: #d7d7d2;
+  --kc-space-4: 1rem;
+  --kc-space-8: 2rem;
+  --kc-space-16: 4rem;
+  --kc-font-sans: Arial, Helvetica, sans-serif;
+  --kc-width-content: 72rem;
+}

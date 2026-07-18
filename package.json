@@ -1,0 +1,33 @@
+{
+  "name": "kclub-mvp-v4.2",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=9.15.9"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "pnpm --filter @kclub/product-core dev",
+    "dev:admin": "pnpm --filter @kclub/admin-app dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "db:validate": "pnpm --filter @kclub/database db:validate",
+    "db:generate": "pnpm --filter @kclub/database db:generate",
+    "validate": "pnpm format:check && pnpm lint && pnpm test && pnpm build && pnpm typecheck"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0",
+    "turbo": "^2.0.0",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^3.0.0"
+  }
+}

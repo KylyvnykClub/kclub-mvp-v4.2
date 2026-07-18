@@ -1,0 +1,48 @@
+@import './tokens.css';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--kc-color-canvas);
+  color: var(--kc-color-ink);
+}
+
+body {
+  margin: 0;
+  font-family: var(--kc-font-sans);
+}
+
+.kc-app {
+  min-height: 100vh;
+}
+
+.kc-page {
+  padding: var(--kc-space-16) var(--kc-space-4);
+}
+
+.kc-container {
+  width: min(100%, var(--kc-width-content));
+  margin-inline: auto;
+}
+
+.kc-stack {
+  display: grid;
+  gap: var(--kc-space-4);
+}
+
+.kc-eyebrow {
+  margin: 0;
+  color: var(--kc-color-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.kc-title {
+  max-width: 18ch;
+  margin: 0;
+  font-size: clamp(2rem, 7vw, 4.5rem);
+  line-height: 1;
+}

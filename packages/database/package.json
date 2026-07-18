@@ -1,0 +1,19 @@
+{
+  "name": "@kclub/database",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "db:deploy": "prisma migrate deploy --config prisma.config.ts",
+    "db:generate": "prisma generate --config prisma.config.ts",
+    "db:validate": "prisma validate --config prisma.config.ts",
+    "lint": "eslint src prisma.config.ts --max-warnings=0",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@prisma/client": "^7.5.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0",
+    "prisma": "^7.5.0"
+  }
+}
