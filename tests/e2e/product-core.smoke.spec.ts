@@ -69,3 +69,59 @@ test('@smoke selects and previews club offerings accessibly', async ({ page, isM
   await expect(lastTab).toHaveAttribute('aria-selected', 'true');
   await expect(lastTab).toBeFocused();
 });
+
+test('@smoke navigates the membership process with emphasized steps', async ({
+  page,
+  isMobile,
+}) => {
+  await page.goto('/en');
+
+  const process = page.locator('[data-section="steps"]');
+  const navigation = process.locator('.kc-process-navigation');
+  const firstStep = navigation.getByRole('button', { name: /Submit an application/ });
+  const secondStep = navigation.getByRole('button', { name: /Complete the review/ });
+
+  await expect(process).toBeVisible();
+  await expect(firstStep).toHaveAttribute('aria-current', 'step');
+  await secondStep.click();
+  await expect(secondStep).toHaveAttribute('aria-current', 'step');
+  await expect(process.getByRole('heading', { level: 3 })).toHaveText('Complete the review');
+  await expect(process.locator('.kc-process-image-layer[data-state="active"] img')).toHaveAttribute(
+    'src',
+    /content_2/,
+  );
+
+  await secondStep.press('End');
+  const lastStep = navigation.getByRole('button', { name: /Sustain the relationship/ });
+  await expect(lastStep).toHaveAttribute('aria-current', 'step');
+  await expect(lastStep).toBeFocused();
+
+  const expectedHeight = isMobile ? 96 : 128;
+  await expect(lastStep).toHaveCSS('height', `${expectedHeight}px`);
+
+  const viewportFit = await process.evaluate((section) => {
+    const stage = section.querySelector<HTMLElement>('.kc-process-stage');
+    return {
+      sectionHeight: section.getBoundingClientRect().height,
+      stageHeight: stage?.getBoundingClientRect().height ?? 0,
+      viewportHeight: window.innerHeight,
+    };
+  });
+  expect(viewportFit.sectionHeight).toBeLessThanOrEqual(viewportFit.viewportHeight);
+  expect(viewportFit.stageHeight).toBeLessThanOrEqual(viewportFit.viewportHeight * 0.35);
+
+  if (isMobile) {
+    const dimensions = await page.evaluate(() => {
+      const processNavigation = document.querySelector<HTMLElement>('.kc-process-navigation');
+      return {
+        pageWidth: document.documentElement.scrollWidth,
+        viewportWidth: document.documentElement.clientWidth,
+        navigationClientWidth: processNavigation?.clientWidth ?? 0,
+        navigationScrollWidth: processNavigation?.scrollWidth ?? 0,
+      };
+    });
+
+    expect(dimensions.pageWidth).toBeLessThanOrEqual(dimensions.viewportWidth);
+    expect(dimensions.navigationScrollWidth).toBeGreaterThan(dimensions.navigationClientWidth);
+  }
+});
