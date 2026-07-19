@@ -9,6 +9,7 @@
       "homeLabel": "KYLYVNYK CLUB home",
       "label": "Primary navigation",
       "about": "About",
+      "partners": "Partners",
       "offerings": "Offerings",
       "how": "How it works",
       "faq": "FAQ",
@@ -97,30 +98,29 @@
         "link": "Meet the stewards"
       }
     },
-    "outcomes": {
-      "eyebrow": "Member outcomes",
-      "title": "What has come out of the room.",
-      "lead": "A few illustrative stories from within the network. Names and identifying details are placeholders for the MVP preview.",
-      "note": "Illustrative outcomes for the MVP preview — verified member stories will replace them.",
-      "coinvestment": {
-        "tag": "Co-investment",
-        "title": "From a first-year introduction to a shared cap-table.",
-        "result": "3 introductions → 1 co-investment closed inside 90 days."
+    "partners": {
+      "eyebrow": "Our partners",
+      "title": "Companies working alongside the club.",
+      "lead": "A curated group of organizations supporting members with expertise, access and practical services.",
+      "note": "Illustrative partner profiles for the MVP preview — verified companies and details will replace them.",
+      "details": "Details",
+      "advisory": {
+        "category": "Advisory",
+        "country": "Germany",
+        "name": "North Harbor Advisors",
+        "description": "Strategic guidance for owners navigating growth, partnerships and complex long-term decisions."
       },
-      "relocation": {
-        "tag": "Relocation",
-        "title": "A move across three markets, guided end-to-end.",
-        "result": "12-city relocation shortlisted with support from 6 senior members."
+      "finance": {
+        "category": "Finance",
+        "country": "Switzerland",
+        "name": "Meridian Family Office",
+        "description": "Private-market perspective and considered financial support for founders and family enterprises."
       },
-      "succession": {
-        "tag": "Succession",
-        "title": "Handing a family business to the next generation.",
-        "result": "Advisory panel + steward completed the transition over 14 months."
-      },
-      "hiring": {
-        "tag": "Hiring",
-        "title": "Finding a leader when the search firm couldn't.",
-        "result": "One warm introduction closed a role open for eight months."
+      "legal": {
+        "category": "Legal",
+        "country": "Poland",
+        "name": "Loden Legal",
+        "description": "Commercial legal expertise for cross-border operations, transactions and responsible expansion."
       }
     },
     "steps": {
@@ -307,6 +307,109 @@
         "system": "Use system theme",
         "light": "Use light theme",
         "dark": "Use dark theme"
+      }
+    }
+  },
+  "partners": {
+    "meta": {
+      "title": "Partners catalog",
+      "description": "Explore verified KYLYVNYK CLUB partners, member benefits and available discounts."
+    },
+    "hero": {
+      "eyebrow": "Partner network",
+      "title": "Trusted companies. Practical member advantages.",
+      "lead": "Explore organizations selected for their expertise, reputation and ability to support club members."
+    },
+    "filters": {
+      "title": "Filters",
+      "category": "Business category",
+      "country": "Country",
+      "discount": "Member discount",
+      "allCategories": "All categories",
+      "allCountries": "All countries",
+      "anyDiscount": "Any discount",
+      "discountFrom": "From {discount}%",
+      "apply": "Apply filters",
+      "reset": "Reset"
+    },
+    "breadcrumbs": {
+      "label": "Breadcrumb",
+      "home": "Home",
+      "partners": "Partners"
+    },
+    "results": {
+      "eyebrow": "Catalog",
+      "title": "Club partners",
+      "count": "{count, plural, =0 {No companies} one {# company} other {# companies}}"
+    },
+    "pagination": {
+      "label": "Partners catalog pages",
+      "previous": "Previous",
+      "next": "Next",
+      "status": "Page {current} of {total}"
+    },
+    "empty": {
+      "title": "No partners match these filters yet.",
+      "text": "Reset the filters or choose a broader combination to see available companies."
+    },
+    "card": {
+      "discount": "{discount}% off",
+      "details": "Details"
+    },
+    "contact": {
+      "eyebrow": "Partnership",
+      "title": "Want to learn more about a partner?",
+      "lead": "Send the club a note and we will help you understand the available member benefit.",
+      "action": "Contact the club"
+    },
+    "categories": {
+      "advisory": "Advisory",
+      "finance": "Finance",
+      "legal": "Legal",
+      "technology": "Technology"
+    },
+    "countries": {
+      "germany": "Germany",
+      "switzerland": "Switzerland",
+      "poland": "Poland",
+      "ukraine": "Ukraine"
+    },
+    "items": {
+      "northHarbor": {
+        "name": "North Harbor Advisors",
+        "description": "Strategic guidance for owners navigating growth, partnerships and complex long-term decisions."
+      },
+      "meridian": {
+        "name": "Meridian Family Office",
+        "description": "Private-market perspective and considered financial support for founders and family enterprises."
+      },
+      "loden": {
+        "name": "Loden Legal",
+        "description": "Commercial legal expertise for cross-border operations, transactions and responsible expansion."
+      },
+      "vectorLabs": {
+        "name": "Vector Labs",
+        "description": "Digital products and data systems for companies modernizing complex operations."
+      },
+      "steinWorks": {
+        "name": "Stein Works",
+        "description": "Operational advisory for leadership teams moving from ambition to disciplined execution."
+      },
+      "vistulaCapital": {
+        "name": "Vistula Capital",
+        "description": "Flexible growth capital and practical financial expertise for established businesses."
+      },
+      "dniproDigital": {
+        "name": "Dnipro Digital",
+        "description": "Engineering and transformation support for scalable digital services and platforms."
+      },
+      "rheinLegal": {
+        "name": "Rhein Legal",
+        "description": "Clear commercial counsel for governance, contracts and international market entry."
+      },
+      "alpineStrategy": {
+        "name": "Alpine Strategy",
+        "description": "Independent strategic perspective for owners considering their next stage of growth."
       }
     }
   },

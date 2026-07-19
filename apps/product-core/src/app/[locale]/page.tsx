@@ -3,7 +3,7 @@ import { Cta } from '../../features/home/components/Cta';
 import { Faq } from '../../features/home/components/Faq';
 import { Hero } from '../../features/home/components/Hero';
 import { Offerings } from '../../features/home/components/Offerings';
-import { Outcomes } from '../../features/home/components/Outcomes';
+import { Partners } from '../../features/home/components/Partners';
 import { StatsTimeline } from '../../features/home/components/StatsTimeline';
 import { Steps } from '../../features/home/components/Steps';
 import { Stewards } from '../../features/home/components/Stewards';
@@ -17,7 +17,7 @@ export default function HomePage() {
       <Hero />
       <Values />
       <Offerings />
-      <Outcomes />
+      <Partners />
       <Steps />
       <Stewards />
       <TrustMarks />

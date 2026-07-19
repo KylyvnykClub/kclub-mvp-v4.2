@@ -10,6 +10,7 @@ export async function Header() {
   const t = await getTranslations('home');
   const links = [
     { href: '/about', label: t('nav.about') },
+    { href: '/partners', label: t('nav.partners') },
     { href: '/#offerings', label: t('nav.offerings') },
     { href: '/#how-it-works', label: t('nav.how') },
     { href: '/#faq', label: t('nav.faq') },
