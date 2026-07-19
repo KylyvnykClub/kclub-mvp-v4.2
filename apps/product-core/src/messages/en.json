@@ -150,26 +150,12 @@
         "text": "Ongoing stewardship, quarterly check-ins and access to circles and gatherings that fit."
       }
     },
-    "stewards": {
-      "eyebrow": "Stewards",
-      "title": "The people who look after member journeys.",
-      "lead": "Every member has a named steward — a senior member who knows your context and keeps the follow-through honest.",
-      "note": "Illustrative stewards for the MVP preview — real profiles will replace them.",
-      "chair": {
-        "role": "Chair of stewards",
-        "name": "Placeholder — Chair",
-        "credo": "Trust is built by returning to conversations after the polite ending."
-      },
-      "programs": {
-        "role": "Programs steward",
-        "name": "Placeholder — Programs",
-        "credo": "The best gatherings feel like a smaller room than they are."
-      },
-      "membership": {
-        "role": "Membership steward",
-        "name": "Placeholder — Membership",
-        "credo": "The review is not a filter — it's the first useful conversation."
-      }
+    "topPartners": {
+      "eyebrow": "Top partners",
+      "title": "Companies working alongside the club.",
+      "lead": "A curated group of organizations supporting members with expertise, access and practical services.",
+      "note": "Illustrative partner profiles for the MVP preview — verified companies and details will replace them.",
+      "details": "Details"
     },
     "trustMarks": {
       "label": "Trust marks",
@@ -411,6 +397,20 @@
         "name": "Alpine Strategy",
         "description": "Independent strategic perspective for owners considering their next stage of growth."
       }
+    },
+    "detail": {
+      "about": "About the company",
+      "aboutText": "{name} is a verified partner of KYLYVNYK CLUB, offering exclusive benefits and expertise to club members. The partnership reflects a shared commitment to quality, trust and meaningful business relationships.",
+      "memberBenefit": "Member benefit",
+      "memberBenefitText": "As a KYLYVNYK CLUB member, you receive a {discount}% discount on services provided by {name}. This benefit is available exclusively through your club membership.",
+      "howItWorks": "How to access",
+      "howItWorksText": "Contact the club to request an introduction to this partner. Your steward will provide the context needed for a productive first conversation and ensure the member benefit is applied.",
+      "backToPartners": "All partners",
+      "companyInfo": "Company",
+      "categoryLabel": "Category",
+      "locationLabel": "Location",
+      "discountLabel": "Member discount",
+      "contactClub": "Request introduction"
     }
   },
   "about": {

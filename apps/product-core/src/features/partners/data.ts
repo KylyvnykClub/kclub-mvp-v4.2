@@ -6,6 +6,7 @@ export type PartnerCountry = (typeof PARTNER_COUNTRIES)[number];
 
 export type PartnerProfile = Readonly<{
   key: string;
+  slug: string;
   category: PartnerCategory;
   country: PartnerCountry;
   discountPercent: number;
@@ -15,6 +16,7 @@ export type PartnerProfile = Readonly<{
 export const PARTNERS: ReadonlyArray<PartnerProfile> = [
   {
     key: 'northHarbor',
+    slug: 'north-harbor-advisors',
     category: 'advisory',
     country: 'germany',
     discountPercent: 15,
@@ -23,6 +25,7 @@ export const PARTNERS: ReadonlyArray<PartnerProfile> = [
   },
   {
     key: 'meridian',
+    slug: 'meridian-family-office',
     category: 'finance',
     country: 'switzerland',
     discountPercent: 10,
@@ -31,6 +34,7 @@ export const PARTNERS: ReadonlyArray<PartnerProfile> = [
   },
   {
     key: 'loden',
+    slug: 'loden-legal',
     category: 'legal',
     country: 'poland',
     discountPercent: 20,
@@ -39,6 +43,7 @@ export const PARTNERS: ReadonlyArray<PartnerProfile> = [
   },
   {
     key: 'vectorLabs',
+    slug: 'vector-labs',
     category: 'technology',
     country: 'ukraine',
     discountPercent: 25,
@@ -47,6 +52,7 @@ export const PARTNERS: ReadonlyArray<PartnerProfile> = [
   },
   {
     key: 'steinWorks',
+    slug: 'stein-works',
     category: 'advisory',
     country: 'switzerland',
     discountPercent: 10,
@@ -55,6 +61,7 @@ export const PARTNERS: ReadonlyArray<PartnerProfile> = [
   },
   {
     key: 'vistulaCapital',
+    slug: 'vistula-capital',
     category: 'finance',
     country: 'poland',
     discountPercent: 15,
@@ -63,6 +70,7 @@ export const PARTNERS: ReadonlyArray<PartnerProfile> = [
   },
   {
     key: 'dniproDigital',
+    slug: 'dnipro-digital',
     category: 'technology',
     country: 'ukraine',
     discountPercent: 20,
@@ -71,6 +79,7 @@ export const PARTNERS: ReadonlyArray<PartnerProfile> = [
   },
   {
     key: 'rheinLegal',
+    slug: 'rhein-legal',
     category: 'legal',
     country: 'germany',
     discountPercent: 10,
@@ -79,6 +88,7 @@ export const PARTNERS: ReadonlyArray<PartnerProfile> = [
   },
   {
     key: 'alpineStrategy',
+    slug: 'alpine-strategy',
     category: 'advisory',
     country: 'switzerland',
     discountPercent: 5,
@@ -86,3 +96,6 @@ export const PARTNERS: ReadonlyArray<PartnerProfile> = [
       'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop&q=85',
   },
 ] as const;
+
+export const findPartnerBySlug = (slug: string) =>
+  PARTNERS.find((p) => p.slug === slug);

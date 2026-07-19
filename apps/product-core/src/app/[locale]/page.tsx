@@ -6,7 +6,7 @@ import { Offerings } from '../../features/home/components/Offerings';
 import { Partners } from '../../features/home/components/Partners';
 import { StatsTimeline } from '../../features/home/components/StatsTimeline';
 import { Steps } from '../../features/home/components/Steps';
-import { Stewards } from '../../features/home/components/Stewards';
+import { TopPartners } from '../../features/home/components/TopPartners';
 import { Testimonials } from '../../features/home/components/Testimonials';
 import { TrustMarks } from '../../features/home/components/TrustMarks';
 import { Values } from '../../features/home/components/Values';
@@ -19,7 +19,7 @@ export default function HomePage() {
       <Offerings />
       <Partners />
       <Steps />
-      <Stewards />
+      <TopPartners />
       <TrustMarks />
       <StatsTimeline />
       <Testimonials />
