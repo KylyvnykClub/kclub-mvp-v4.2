@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "product-core",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@kclub/product-core", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "admin-app",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@kclub/admin-app", "dev"],
+      "port": 3001
+    }
+  ]
+}

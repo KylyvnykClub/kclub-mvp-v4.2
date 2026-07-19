@@ -53,7 +53,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning data-scroll-behavior="smooth">
       <body className="kc-app">
         <NextIntlClientProvider>
           <AppThemeProvider>{children}</AppThemeProvider>
