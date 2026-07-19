@@ -120,7 +120,7 @@ export async function PartnersCatalogPage({ filters }: PartnersCatalogPageProps)
                       discount: partner.discountPercent,
                     })}
                     detailsLabel={t('card.details')}
-                    href="#contact"
+                    href={`/partners/${partner.slug}`}
                   />
                 ))}
               </div>

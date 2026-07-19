@@ -5,18 +5,18 @@ import { PARTNERS } from '../../partners/data';
 import { PartnerCard } from '../../partners/PartnerCard';
 import { SectionHeading } from './SectionHeading';
 
-export async function Partners() {
-  const t = await getTranslations('home.partners');
+export async function TopPartners() {
+  const t = await getTranslations('home.topPartners');
   const partnerT = await getTranslations('partners');
 
   return (
-    <section className="kc-section" id="partners" data-section="partners">
+    <section className="kc-section" data-section="top-partners" data-tone="muted">
       <div className="kc-container">
         <Reveal>
           <SectionHeading eyebrow={t('eyebrow')} title={t('title')} lead={t('lead')} />
         </Reveal>
         <div className="kc-partners-grid">
-          {PARTNERS.slice(0, 3).map((partner, index) => {
+          {PARTNERS.slice(3, 6).map((partner, index) => {
             const delay = (index + 1) as 1 | 2 | 3;
 
             return (
