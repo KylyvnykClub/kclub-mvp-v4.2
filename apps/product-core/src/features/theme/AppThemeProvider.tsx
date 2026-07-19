@@ -7,8 +7,8 @@ export function AppThemeProvider({ children }: Readonly<{ children: ReactNode }>
   return (
     <ThemeProvider
       attribute="data-theme"
-      defaultTheme="dark"
-      enableSystem={false}
+      defaultTheme="system"
+      enableSystem
       disableTransitionOnChange
     >
       {children}

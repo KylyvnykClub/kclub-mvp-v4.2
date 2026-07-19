@@ -8,6 +8,7 @@ import { Hero } from '../../features/home/components/Hero';
 import { HowItWorks } from '../../features/home/components/HowItWorks';
 import { Plan } from '../../features/home/components/Plan';
 import { Stats } from '../../features/home/components/Stats';
+import { StatsTimeline } from '../../features/home/components/StatsTimeline';
 import { Steps } from '../../features/home/components/Steps';
 import { Testimonials } from '../../features/home/components/Testimonials';
 
@@ -23,6 +24,7 @@ export default function HomePage() {
         <HowItWorks />
         <Steps />
         <Testimonials />
+        <StatsTimeline />
         <Cta />
         <Faq />
         <ContactFormSection />

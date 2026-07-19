@@ -389,6 +389,105 @@
   color: var(--kc-text);
 }
 
+.kc-stat-timeline {
+  display: grid;
+  gap: var(--kc-space-10);
+  justify-items: center;
+}
+.kc-stat-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--kc-space-6);
+  width: 100%;
+}
+.kc-stat-value {
+  margin: 0;
+  font-size: var(--kc-text-4xl);
+  font-weight: var(--kc-weight-bold);
+  color: var(--kc-text);
+  font-variant-numeric: tabular-nums;
+}
+.kc-stat-metric-label {
+  margin: 0;
+  font-size: var(--kc-text-sm);
+  color: var(--kc-text-muted);
+}
+.kc-stat-years {
+  justify-content: center;
+}
+.kc-year-pill {
+  min-height: var(--kc-size-control-sm);
+  padding: var(--kc-space-1) var(--kc-space-4);
+  font: inherit;
+  font-size: var(--kc-text-sm);
+  color: var(--kc-text-muted);
+  background: transparent;
+  border: 1px solid var(--kc-border);
+  border-radius: var(--kc-radius-full);
+  cursor: pointer;
+  transition:
+    color var(--kc-transition-base),
+    background var(--kc-transition-base),
+    border-color var(--kc-transition-base);
+}
+.kc-year-pill:hover {
+  color: var(--kc-text);
+  background: var(--kc-surface-hover);
+}
+.kc-year-pill[aria-pressed='true'] {
+  color: var(--kc-text-inverse);
+  background: var(--kc-text);
+  border-color: var(--kc-text);
+}
+.kc-ruler {
+  width: 100%;
+  position: relative;
+  height: calc(var(--kc-space-4) + var(--kc-space-2) + var(--kc-border-hairline));
+}
+.kc-ruler::before,
+.kc-ruler::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  background-image:
+    linear-gradient(to right, var(--kc-border) 0, var(--kc-border) 1px, transparent 1px),
+    linear-gradient(to right, var(--kc-border) 0, var(--kc-border) 1px, transparent 1px);
+  background-repeat: repeat-x;
+}
+.kc-ruler::before {
+  top: 0;
+  height: var(--kc-space-4);
+  border-bottom: var(--kc-border-hairline) solid var(--kc-border);
+  background-size:
+    72px var(--kc-space-4),
+    9px var(--kc-space-2);
+  background-position:
+    bottom left,
+    bottom left;
+}
+.kc-ruler::after {
+  bottom: 0;
+  height: var(--kc-space-2);
+  opacity: 0.4;
+  background-size:
+    72px var(--kc-space-2),
+    9px var(--kc-space-1);
+  background-position:
+    top left,
+    top left;
+}
+.kc-stat-note {
+  margin: 0;
+  font-size: var(--kc-text-xs);
+  color: var(--kc-text-muted);
+  text-align: center;
+}
+@media (min-width: 48rem) {
+  .kc-stat-timeline-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 /* ---------- Step list ---------- */
 .kc-step {
   display: grid;
@@ -611,48 +710,44 @@
 .kc-theme-toggle {
   display: inline-flex;
   align-items: center;
+  gap: var(--kc-space-1);
+  padding: var(--kc-space-1);
+  border: 1px solid var(--kc-border);
+  border-radius: var(--kc-radius-full);
+}
+.kc-theme-option {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  gap: var(--kc-space-2);
-  min-height: var(--kc-size-control-sm);
-  padding-inline: var(--kc-space-3);
+  width: calc(var(--kc-size-control-sm) - var(--kc-space-2));
+  height: calc(var(--kc-size-control-sm) - var(--kc-space-2));
+  padding: 0;
   color: var(--kc-text-muted);
   background: transparent;
-  border: 1px solid var(--kc-border);
-  border-radius: var(--kc-radius-md);
-  font: inherit;
-  font-size: var(--kc-text-sm);
+  border: 0;
+  border-radius: var(--kc-radius-full);
   cursor: pointer;
   transition:
     color var(--kc-transition-base),
     background var(--kc-transition-base);
 }
-.kc-theme-toggle-mark {
-  width: var(--kc-theme-mark-size);
-  height: var(--kc-theme-mark-size);
-  border: var(--kc-border-hairline) solid currentColor;
-  border-radius: var(--kc-radius-full);
-  background: currentColor;
-  box-shadow: 0 0 0 var(--kc-border-hairline) var(--kc-bg);
+.kc-theme-option-icon {
+  width: var(--kc-space-4);
+  height: var(--kc-space-4);
 }
 
-.kc-theme-toggle:hover {
+.kc-theme-option:hover {
+  color: var(--kc-text);
+}
+
+.kc-theme-option[aria-pressed='true'] {
   color: var(--kc-text);
   background: var(--kc-surface-hover);
 }
 
-.kc-theme-toggle:disabled {
+.kc-theme-option:disabled {
   opacity: 0.6;
   cursor: wait;
-}
-
-.kc-theme-toggle-label {
-  display: none;
-}
-
-@media (min-width: 64rem) {
-  .kc-theme-toggle-label {
-    display: inline;
-  }
 }
 
 @media (min-width: 48rem) {

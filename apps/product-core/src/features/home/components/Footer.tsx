@@ -57,7 +57,12 @@ export async function Footer() {
           <span>{t('copyright')}</span>
           <div className="kc-cluster">
             <span>{t('status')}</span>
-            <ThemeToggle lightLabel={t('theme.light')} darkLabel={t('theme.dark')} />
+            <ThemeToggle
+              label={t('theme.label')}
+              systemLabel={t('theme.system')}
+              lightLabel={t('theme.light')}
+              darkLabel={t('theme.dark')}
+            />
           </div>
         </div>
       </div>

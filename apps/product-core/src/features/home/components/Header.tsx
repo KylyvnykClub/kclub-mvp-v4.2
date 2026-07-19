@@ -27,7 +27,12 @@ export async function Header() {
           ))}
         </nav>
         <div className="kc-header-actions">
-          <ThemeToggle lightLabel={t('theme.light')} darkLabel={t('theme.dark')} />
+          <ThemeToggle
+            label={t('theme.label')}
+            systemLabel={t('theme.system')}
+            lightLabel={t('theme.light')}
+            darkLabel={t('theme.dark')}
+          />
           <a className="kc-button kc-focus-ring kc-header-cta" data-size="sm" href="#contact">
             {t('nav.join')}
           </a>

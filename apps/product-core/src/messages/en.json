@@ -16,7 +16,26 @@
       "menu": "Menu",
       "close": "Close"
     },
-    "theme": { "light": "Use light theme", "dark": "Use dark theme" },
+    "theme": {
+      "label": "Theme",
+      "system": "Use system theme",
+      "light": "Use light theme",
+      "dark": "Use dark theme"
+    },
+    "statsTimeline": {
+      "label": "Club metrics by year",
+      "eyebrow": "Momentum",
+      "title": "The club, in numbers.",
+      "lead": "Select a year to see how the community compounds: members, cities, introductions and gatherings.",
+      "yearsLabel": "Year",
+      "metrics": {
+        "members": "Members",
+        "cities": "Cities",
+        "intros": "Introductions made",
+        "events": "Gatherings held"
+      },
+      "note": "Illustrative projections for the MVP preview — figures will be replaced with verified club data."
+    },
     "hero": {
       "eyebrow": "Private membership community",
       "title": "Trusted connections for people building meaningful businesses.",
@@ -166,7 +185,12 @@
       "languages": "Language",
       "copyright": "© KYLYVNYK CLUB",
       "status": "MVP marketing experience",
-      "theme": { "light": "Use light theme", "dark": "Use dark theme" }
+      "theme": {
+        "label": "Theme",
+        "system": "Use system theme",
+        "light": "Use light theme",
+        "dark": "Use dark theme"
+      }
     }
   }
 }
