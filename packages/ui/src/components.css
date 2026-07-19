@@ -1838,3 +1838,320 @@
 .kc-footer-inner-wrap {
   display: block;
 }
+
+/* ---------- About page ---------- */
+.kc-about-page {
+  overflow: clip;
+}
+.kc-about-hero {
+  padding-block: var(--kc-about-hero-padding) var(--kc-space-12);
+  border-bottom: var(--kc-border-hairline) solid var(--kc-border);
+}
+.kc-about-hero-title {
+  max-width: 12ch;
+  margin: var(--kc-space-6) 0 var(--kc-space-12);
+  font-family: var(--font-heading);
+  font-size: var(--kc-about-hero-title);
+  font-weight: var(--kc-weight-bold);
+  line-height: var(--kc-leading-none);
+  letter-spacing: var(--kc-tracking-tight);
+}
+.kc-about-hero-collage {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, 1fr);
+  gap: var(--kc-space-2);
+  height: var(--kc-about-collage-height-mobile);
+}
+.kc-about-hero-image,
+.kc-about-media,
+.kc-about-work-image,
+.kc-about-values-media,
+.kc-about-trust-media {
+  position: relative;
+  overflow: hidden;
+}
+.kc-about-hero-image:nth-child(2),
+.kc-about-hero-image:nth-child(4) {
+  transform: translateY(var(--kc-about-collage-offset));
+}
+.kc-about-hero-image img,
+.kc-about-media img,
+.kc-about-work-image img,
+.kc-about-values-media img,
+.kc-about-trust-image img {
+  object-fit: cover;
+  filter: var(--kc-about-image-filter);
+}
+.kc-about-metrics,
+.kc-about-value-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--kc-space-6);
+  margin-top: var(--kc-space-12);
+}
+.kc-about-metrics div,
+.kc-about-value-metrics div {
+  display: grid;
+  gap: var(--kc-space-1);
+  padding-top: var(--kc-space-4);
+  border-top: var(--kc-border-hairline) solid var(--kc-border-strong);
+}
+.kc-about-metrics strong,
+.kc-about-value-metrics strong {
+  font-family: var(--font-heading);
+  font-size: var(--kc-text-3xl);
+  color: var(--kc-text);
+}
+.kc-about-metrics span,
+.kc-about-value-metrics span {
+  color: var(--kc-text-muted);
+  font-size: var(--kc-text-sm);
+}
+.kc-about-story-grid,
+.kc-about-split {
+  display: grid;
+  gap: var(--kc-space-10);
+}
+.kc-about-statement {
+  max-width: 17ch;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--kc-about-statement);
+  line-height: var(--kc-leading-tight);
+  letter-spacing: var(--kc-tracking-tight);
+}
+.kc-about-lead,
+.kc-about-copy > p,
+.kc-about-section-heading > p:last-child {
+  max-width: var(--kc-about-copy-measure);
+  color: var(--kc-text-muted);
+  line-height: var(--kc-leading-relaxed);
+}
+.kc-about-story-action {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--kc-space-6);
+  margin-top: var(--kc-space-8);
+}
+.kc-about-markers {
+  display: flex;
+}
+.kc-about-markers span {
+  display: grid;
+  place-items: center;
+  width: var(--kc-size-control-lg);
+  height: var(--kc-size-control-lg);
+  margin-left: calc(var(--kc-space-2) * -1);
+  border: var(--kc-border-hairline) solid var(--kc-border-strong);
+  border-radius: var(--kc-radius-full);
+  background: var(--kc-surface);
+  color: var(--kc-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--kc-text-xs);
+}
+.kc-about-media {
+  min-height: var(--kc-about-media-height);
+}
+.kc-about-copy {
+  align-self: center;
+}
+.kc-about-copy h2,
+.kc-about-section-heading h2,
+.kc-about-values-overlay h2 {
+  margin: var(--kc-space-4) 0;
+  font-family: var(--font-heading);
+  font-size: var(--kc-section-title);
+  line-height: var(--kc-leading-tight);
+}
+.kc-about-principles {
+  list-style: none;
+  display: grid;
+  margin: var(--kc-space-8) 0 0;
+  padding: 0;
+  border-top: var(--kc-border-hairline) solid var(--kc-border);
+}
+.kc-about-principles li {
+  display: grid;
+  grid-template-columns: var(--kc-space-10) 1fr;
+  gap: var(--kc-space-4);
+  padding-block: var(--kc-space-4);
+  border-bottom: var(--kc-border-hairline) solid var(--kc-border);
+}
+.kc-about-principles span,
+.kc-about-work-number,
+.kc-about-trust-trigger > span {
+  color: var(--kc-text-faint);
+  font-family: var(--font-mono);
+  font-size: var(--kc-text-xs);
+}
+.kc-about-section-heading {
+  margin-bottom: var(--kc-space-10);
+}
+.kc-about-work-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--kc-border-hairline);
+  background: var(--kc-border);
+  border: var(--kc-border-hairline) solid var(--kc-border);
+}
+.kc-about-work-card {
+  min-width: 0;
+  background: var(--kc-bg);
+}
+.kc-about-work-card > a {
+  display: grid;
+  align-content: start;
+  gap: var(--kc-space-3);
+  height: 100%;
+  padding: var(--kc-space-4);
+  color: inherit;
+  text-decoration: none;
+}
+.kc-about-work-image {
+  display: block;
+  height: var(--kc-about-work-media-height);
+  margin-bottom: var(--kc-space-3);
+}
+.kc-about-work-card h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--kc-text-xl);
+}
+.kc-about-work-card p {
+  margin: 0;
+  color: var(--kc-text-muted);
+  font-size: var(--kc-text-sm);
+}
+.kc-about-work-cta > a {
+  align-content: space-between;
+  min-height: var(--kc-about-work-media-height);
+  padding: var(--kc-space-8);
+  background: var(--kc-surface);
+}
+.kc-about-values-media {
+  min-height: var(--kc-about-values-height);
+}
+.kc-about-values-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--kc-about-overlay);
+}
+.kc-about-values-overlay,
+.kc-about-trust-caption {
+  position: absolute;
+  z-index: calc(var(--kc-z-base) + 1);
+  inset-inline: var(--kc-space-6);
+  bottom: var(--kc-space-6);
+  max-width: var(--kc-max-w-heading);
+}
+.kc-about-values-overlay p:last-child,
+.kc-about-trust-caption p {
+  color: var(--kc-text-muted);
+}
+.kc-about-trust-layout {
+  display: grid;
+  gap: var(--kc-space-6);
+}
+.kc-about-trust-media {
+  min-height: var(--kc-about-trust-media-height);
+  background: var(--kc-surface);
+}
+.kc-about-trust-image {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(var(--kc-about-trust-scale));
+  transition:
+    opacity var(--kc-about-trust-duration) var(--kc-ease),
+    transform var(--kc-about-trust-duration) var(--kc-ease);
+}
+.kc-about-trust-image[data-state='active'] {
+  opacity: 1;
+  transform: scale(1);
+}
+.kc-about-trust-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--kc-about-overlay);
+}
+.kc-about-trust-caption span {
+  color: var(--kc-brand);
+  font-size: var(--kc-text-xs);
+  letter-spacing: var(--kc-tracking-eyebrow);
+  text-transform: uppercase;
+}
+.kc-about-trust-caption p {
+  margin-bottom: 0;
+}
+.kc-about-trust-list {
+  display: grid;
+}
+.kc-about-trust-trigger {
+  display: grid;
+  grid-template-columns: var(--kc-space-10) 1fr;
+  align-items: center;
+  gap: var(--kc-space-4);
+  min-height: var(--kc-space-16);
+  padding: var(--kc-space-4) 0;
+  border: 0;
+  border-top: var(--kc-border-hairline) solid var(--kc-border);
+  background: transparent;
+  color: var(--kc-text-muted);
+  text-align: left;
+  cursor: pointer;
+  transition: color var(--kc-transition-slow);
+}
+.kc-about-trust-trigger:last-child {
+  border-bottom: var(--kc-border-hairline) solid var(--kc-border);
+}
+.kc-about-trust-trigger strong {
+  font-family: var(--font-heading);
+  font-size: var(--kc-text-lg);
+  font-weight: var(--kc-weight-medium);
+}
+.kc-about-trust-trigger:hover,
+.kc-about-trust-trigger[data-state='active'] {
+  color: var(--kc-text);
+}
+
+@media (min-width: 48rem) {
+  .kc-about-hero-collage {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: 1fr;
+    height: var(--kc-about-collage-height);
+  }
+  .kc-about-metrics {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .kc-about-story-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  }
+  .kc-about-split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .kc-about-work-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .kc-about-value-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .kc-about-trust-layout {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  }
+}
+@media (min-width: 64rem) {
+  .kc-about-work-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kc-about-trust-image {
+    transition: none;
+    transform: none;
+  }
+}

@@ -9,11 +9,11 @@ import { ThemeToggle } from '../../theme/ThemeToggle';
 export async function Header() {
   const t = await getTranslations('home');
   const links = [
-    { href: '#values', label: t('nav.about') },
-    { href: '#offerings', label: t('nav.offerings') },
-    { href: '#how-it-works', label: t('nav.how') },
-    { href: '#faq', label: t('nav.faq') },
-    { href: '#contact', label: t('nav.contact') },
+    { href: '/about', label: t('nav.about') },
+    { href: '/#offerings', label: t('nav.offerings') },
+    { href: '/#how-it-works', label: t('nav.how') },
+    { href: '/#faq', label: t('nav.faq') },
+    { href: '/#contact', label: t('nav.contact') },
   ];
 
   return (
@@ -31,9 +31,9 @@ export async function Header() {
           </Link>
           <nav className="kc-nav" aria-label={t('nav.label')}>
             {links.map((link) => (
-              <a className="kc-nav-link kc-focus-ring" href={link.href} key={link.href}>
+              <Link className="kc-nav-link kc-focus-ring" href={link.href} key={link.href}>
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
           <div className="kc-header-actions">
@@ -43,9 +43,9 @@ export async function Header() {
               lightLabel={t('theme.light')}
               darkLabel={t('theme.dark')}
             />
-            <a className="kc-button kc-focus-ring kc-header-cta" data-size="sm" href="#contact">
+            <Link className="kc-button kc-focus-ring kc-header-cta" data-size="sm" href="/#contact">
               {t('nav.join')}
-            </a>
+            </Link>
             <MobileNav links={links} label={t('nav.menu')} closeLabel={t('nav.close')} />
           </div>
         </div>

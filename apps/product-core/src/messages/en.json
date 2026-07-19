@@ -309,5 +309,87 @@
         "dark": "Use dark theme"
       }
     }
+  },
+  "about": {
+    "meta": {
+      "title": "About the club",
+      "description": "How KYLYVNYK CLUB builds trusted business relationships through context, discretion and thoughtful stewardship."
+    },
+    "hero": {
+      "eyebrow": "About KYLYVNYK CLUB",
+      "title": "Leading with integrity and purpose.",
+      "metrics": {
+        "reviewed": { "value": "1,000+", "label": "members and applicants reviewed" },
+        "formats": { "value": "5", "label": "working club formats" },
+        "languages": { "value": "3", "label": "languages supported" },
+        "steward": { "value": "1", "label": "named steward for every member" }
+      }
+    },
+    "story": {
+      "eyebrow": "Our story",
+      "title": "A private circle built around the quality of each introduction, not the size of a contact list.",
+      "text": "KYLYVNYK CLUB brings together founders, operators, specialists and investors who value useful context. The product is deliberately personal: applications are reviewed, introductions are considered and every member journey has an accountable steward.",
+      "markersLabel": "Club principles",
+      "cta": "Start an application"
+    },
+    "mission": {
+      "eyebrow": "Our mission",
+      "title": "Make valuable business relationships easier to begin and worthy of keeping.",
+      "text": "We create the conditions for trust before asking people to transact. That means clear standards, careful context and follow-through after the first conversation.",
+      "imageAlt": "A connected city representing the club network",
+      "principles": {
+        "context": "Context before contact",
+        "discretion": "Discretion by default",
+        "reciprocity": "Contribution creates access"
+      }
+    },
+    "work": {
+      "eyebrow": "What we do",
+      "title": "Formats designed for useful exchange.",
+      "lead": "Five ways to turn shared context into focused conversations, decisions and long-term relationships.",
+      "ctaEyebrow": "Membership",
+      "ctaTitle": "Bring your context into the circle.",
+      "ctaLabel": "Apply for consideration"
+    },
+    "values": {
+      "eyebrow": "Our values",
+      "title": "Trust is a product decision.",
+      "text": "Review, privacy and stewardship are not campaign language. They are the operating constraints that shape who enters, how people meet and what happens next.",
+      "imageAlt": "Global companies connected through a trusted network",
+      "metrics": {
+        "review": { "value": "100%", "label": "of applications individually reviewed" },
+        "formats": { "value": "5", "label": "formats with a clear purpose" },
+        "locale": { "value": "EN · RU · UK", "label": "full localized experience" }
+      }
+    },
+    "trust": {
+      "eyebrow": "Recognition and trust",
+      "title": "Signals that will be verified, not invented.",
+      "lead": "This interactive index shows the intended recognition layer while the club prepares approved evidence.",
+      "navigationLabel": "Trust signals",
+      "note": "Placeholder press and guild marks for the MVP preview — confirmed mentions and partner evidence will replace them.",
+      "items": {
+        "longView": {
+          "label": "The Long View",
+          "category": "Placeholder press",
+          "text": "An editorial placeholder for future independent coverage of the club's long-term approach."
+        },
+        "foundersGuild": {
+          "label": "European Founders Guild",
+          "category": "Placeholder guild",
+          "text": "A guild placeholder representing trusted founder networks that may intersect with member life."
+        },
+        "meridian": {
+          "label": "Meridian Family Office",
+          "category": "Placeholder partner",
+          "text": "A partner placeholder for future verified organizations supporting member decisions."
+        },
+        "stewards": {
+          "label": "Guild of Stewards",
+          "category": "Placeholder recognition",
+          "text": "A recognition placeholder for stewardship standards; it is not presented as a confirmed award."
+        }
+      }
+    }
   }
 }

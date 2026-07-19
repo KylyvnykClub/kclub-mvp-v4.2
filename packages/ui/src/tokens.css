@@ -179,6 +179,26 @@
   --kc-process-navigation-height-mobile: 6rem;
   --kc-process-navigation-width-mobile: 9rem;
   --kc-process-image-filter: saturate(0.7) contrast(1.05) brightness(0.78);
+  --kc-about-hero-padding: clamp(4rem, 10svh, 8rem);
+  --kc-about-hero-title: clamp(3rem, 8vw, 7.5rem);
+  --kc-about-collage-height: clamp(22rem, 58vw, 44rem);
+  --kc-about-collage-height-mobile: 31rem;
+  --kc-about-image-filter: saturate(0.58) contrast(1.08) brightness(0.82);
+  --kc-about-image-filter-active: saturate(0.78) contrast(1.04) brightness(0.92);
+  --kc-about-statement: clamp(2rem, 4.5vw, 4.75rem);
+  --kc-about-media-height: clamp(24rem, 52vw, 42rem);
+  --kc-about-values-height: clamp(30rem, 58vw, 46rem);
+  --kc-about-work-media-height: 15rem;
+  --kc-about-trust-media-height: clamp(22rem, 40vw, 34rem);
+  --kc-about-trust-duration: 520ms;
+  --kc-about-trust-scale: 1.04;
+  --kc-about-overlay: linear-gradient(
+    180deg,
+    transparent 20%,
+    color-mix(in srgb, var(--kc-bg) 88%, transparent) 100%
+  );
+  --kc-about-collage-offset: 12%;
+  --kc-about-copy-measure: 60ch;
 
   /* === BACKGROUND TEXTURES (assign to background-image) === */
   --kc-bg-dot-matrix:
