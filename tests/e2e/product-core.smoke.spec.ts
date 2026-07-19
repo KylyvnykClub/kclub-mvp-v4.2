@@ -35,3 +35,37 @@ test('@smoke switches and persists the color theme', async ({ page }) => {
   await header.getByRole('button', { name: 'Use light theme' }).click();
   await expect(page.locator('html')).not.toHaveClass(/dark/);
 });
+
+test('@smoke selects and previews club offerings accessibly', async ({ page, isMobile }) => {
+  await page.goto('/en');
+
+  const offerings = page.locator('[data-section="offerings"]');
+  await expect(offerings).toBeVisible();
+
+  if (isMobile) {
+    const secondTrigger = offerings.getByRole('button', { name: /Deal & partnership circles/ });
+    await expect(secondTrigger).toHaveAttribute('aria-expanded', 'false');
+    await secondTrigger.click();
+    await expect(secondTrigger).toHaveAttribute('aria-expanded', 'true');
+    await expect(
+      offerings.getByText('Small standing groups formed around a shared theme'),
+    ).toBeVisible();
+    return;
+  }
+
+  const tablist = offerings.getByRole('tablist');
+  const firstTab = tablist.getByRole('tab', { name: /Curated introductions/ });
+  const secondTab = tablist.getByRole('tab', { name: /Deal & partnership circles/ });
+  await expect(firstTab).toHaveAttribute('aria-selected', 'true');
+  await secondTab.hover();
+  await expect(tablist).toHaveAttribute('data-active', '1');
+  await tablist.hover({ position: { x: 1, y: 1 } });
+  await expect(tablist).toHaveAttribute('data-active', '0');
+  await secondTab.click();
+  await expect(secondTab).toHaveAttribute('aria-selected', 'true');
+
+  await secondTab.press('End');
+  const lastTab = tablist.getByRole('tab', { name: /Long-term stewardship/ });
+  await expect(lastTab).toHaveAttribute('aria-selected', 'true');
+  await expect(lastTab).toBeFocused();
+});

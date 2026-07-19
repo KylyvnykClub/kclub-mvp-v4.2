@@ -151,6 +151,23 @@
   --kc-transition-base: 150ms var(--kc-ease);
   --kc-transition-slow: 250ms var(--kc-ease);
   --kc-duration-fade: 420ms;
+  --kc-reveal-duration: 640ms;
+  --kc-reveal-distance: 20px;
+  --kc-reveal-stagger: 80ms;
+  --kc-marquee-duration: 40s;
+  --kc-marquee-gap: var(--kc-space-8);
+  --kc-offerings-duration: 500ms;
+  --kc-offerings-fade-duration: 300ms;
+  --kc-offerings-stagger: 100ms;
+  --kc-offerings-panel-height: 36rem;
+  --kc-offerings-panel-height-compact: 28rem;
+  --kc-offerings-panel-gap: 3px;
+  --kc-offerings-expanded: 3fr;
+  --kc-offerings-collapsed: 1fr;
+  --kc-offerings-copy-shift: 2rem;
+  --kc-offerings-spine-title-spacing: 0.25em;
+  --kc-offerings-image-filter: saturate(0.62) contrast(1.06) brightness(0.78);
+  --kc-offerings-image-filter-active: saturate(0.82) contrast(1.04) brightness(0.9);
 
   /* === BACKGROUND TEXTURES (assign to background-image) === */
   --kc-bg-dot-matrix:

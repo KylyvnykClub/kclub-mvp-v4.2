@@ -9,6 +9,7 @@
       "homeLabel": "KYLYVNYK CLUB home",
       "label": "Primary navigation",
       "about": "About",
+      "offerings": "Offerings",
       "how": "How it works",
       "faq": "FAQ",
       "contact": "Contact",
@@ -22,37 +23,33 @@
       "light": "Use light theme",
       "dark": "Use dark theme"
     },
-    "statsTimeline": {
-      "label": "Club metrics by year",
-      "eyebrow": "Momentum",
-      "title": "The club, in numbers.",
-      "lead": "Select a year to see how the community compounds: members, cities, introductions and gatherings.",
-      "yearsLabel": "Year",
-      "metrics": {
-        "members": "Members",
-        "cities": "Cities",
-        "intros": "Introductions made",
-        "events": "Gatherings held"
-      },
-      "note": "Illustrative projections for the MVP preview — figures will be replaced with verified club data."
+    "header": {
+      "promo": {
+        "label": "Applications open",
+        "message": "The next cohort review closes soon — apply for consideration.",
+        "dismiss": "Dismiss announcement"
+      }
     },
     "hero": {
       "eyebrow": "Private membership community",
       "title": "Trusted connections for people building meaningful businesses.",
-      "lead": "KYLYVNYK CLUB brings carefully selected members together around trust, practical exchange and long-term opportunity.",
       "primary": "Apply for membership",
       "secondary": "Discover the club",
-      "noteLabel": "Membership principle",
-      "noteBadge": "By review",
-      "note": "Membership is considered individually so the community stays useful, respectful and relevant."
+      "bullets": {
+        "trust": "Relationships before transactions",
+        "access": "A focused circle, not an open feed",
+        "growth": "Opportunities created through contribution"
+      },
+      "trustedBy": {
+        "count": "1,000+",
+        "label": "Members and applicants reviewed to date"
+      },
+      "scroll": {
+        "text": "Scroll to explore",
+        "label": "Scroll down to the next section"
+      }
     },
-    "stats": {
-      "label": "Club principles",
-      "trust": { "eyebrow": "Trust", "label": "Relationships before transactions" },
-      "access": { "eyebrow": "Access", "label": "A focused circle, not an open feed" },
-      "growth": { "eyebrow": "Growth", "label": "Opportunities created through contribution" }
-    },
-    "about": {
+    "values": {
       "eyebrow": "The club",
       "title": "A stronger environment for business relationships.",
       "lead": "The club is designed for people who value context, reputation and a thoughtful introduction over cold outreach.",
@@ -69,46 +66,143 @@
         "text": "The network works when members share insight, access and support with care."
       }
     },
-    "plan": {
-      "eyebrow": "Membership value",
-      "title": "One membership, three practical layers.",
-      "lead": "A simple structure helps members be understood, discover the right people and act on relevant opportunities.",
-      "profile": {
-        "badge": "Identity",
-        "title": "A credible member profile",
-        "text": "Present your experience, interests and business context clearly."
+    "offerings": {
+      "eyebrow": "Offerings",
+      "title": "What the club actually provides.",
+      "lead": "Not a directory, not a mailing list. A working set of formats around trust, context and useful exchange.",
+      "interactionHint": "Hover to preview. Click to select.",
+      "introductions": {
+        "title": "Curated introductions",
+        "lead": "Warm, context-rich introductions between members — never mass forwarding, never a public feed.",
+        "link": "How intros work"
       },
-      "network": {
-        "badge": "Connections",
-        "title": "A navigable network",
-        "text": "Find relevant members and businesses without the noise of a public social feed."
+      "circles": {
+        "title": "Deal & partnership circles",
+        "lead": "Small standing groups formed around a shared theme: a market, a stage, a category of decision.",
+        "link": "See circle themes"
       },
-      "opportunities": {
-        "badge": "Exchange",
-        "title": "Warm introductions",
-        "text": "Request or offer introductions with enough context for a useful response."
+      "advisory": {
+        "title": "Applied advisory sessions",
+        "lead": "Bring a real question. A hand-picked panel of members returns a decision, not a discussion.",
+        "link": "Request a session"
+      },
+      "gatherings": {
+        "title": "Members-only gatherings",
+        "lead": "Dinners, workshops, retreats. Invited by fit, sized for depth, hosted with care.",
+        "link": "Upcoming gatherings"
+      },
+      "stewardship": {
+        "title": "Long-term stewardship",
+        "lead": "A named member steward keeps track of your journey — introductions, follow-through, quiet check-ins.",
+        "link": "Meet the stewards"
       }
     },
-    "how": {
-      "eyebrow": "How it works",
-      "title": "Designed for deliberate participation.",
-      "lead": "The experience favours quality of context over volume of activity.",
-      "statement": "You build trust by showing who you are, what you can contribute and what kind of connection would be genuinely useful.",
-      "detail": "Member profiles, business pages and introduction requests share a consistent structure. This makes it easier to assess relevance before starting a conversation."
+    "outcomes": {
+      "eyebrow": "Member outcomes",
+      "title": "What has come out of the room.",
+      "lead": "A few illustrative stories from within the network. Names and identifying details are placeholders for the MVP preview.",
+      "note": "Illustrative outcomes for the MVP preview — verified member stories will replace them.",
+      "coinvestment": {
+        "tag": "Co-investment",
+        "title": "From a first-year introduction to a shared cap-table.",
+        "result": "3 introductions → 1 co-investment closed inside 90 days."
+      },
+      "relocation": {
+        "tag": "Relocation",
+        "title": "A move across three markets, guided end-to-end.",
+        "result": "12-city relocation shortlisted with support from 6 senior members."
+      },
+      "succession": {
+        "tag": "Succession",
+        "title": "Handing a family business to the next generation.",
+        "result": "Advisory panel + steward completed the transition over 14 months."
+      },
+      "hiring": {
+        "tag": "Hiring",
+        "title": "Finding a leader when the search firm couldn't.",
+        "result": "One warm introduction closed a role open for eight months."
+      }
     },
     "steps": {
+      "eyebrow": "Process",
+      "title": "Five clear steps from first note to a lasting membership.",
+      "lead": "Fewer forms, more conversation. The same senior team is with you from application through your first year.",
       "apply": {
         "title": "Submit an application",
-        "text": "Tell us about your background, business context and reasons for joining."
+        "text": "Tell us about your background, business context and what a useful membership would look like for you."
       },
       "review": {
         "title": "Complete the review",
         "text": "The club checks fit and may ask for additional context before making a decision."
       },
+      "align": {
+        "title": "Align on intent",
+        "text": "A short call with a senior member to align on how the club can be genuinely useful to you."
+      },
       "connect": {
         "title": "Enter with context",
-        "text": "Build your profile, explore the network and start with thoughtful introductions."
+        "text": "Build your profile, meet your steward and start with thoughtful introductions."
+      },
+      "sustain": {
+        "title": "Sustain the relationship",
+        "text": "Ongoing stewardship, quarterly check-ins and access to circles and gatherings that fit."
       }
+    },
+    "stewards": {
+      "eyebrow": "Stewards",
+      "title": "The people who look after member journeys.",
+      "lead": "Every member has a named steward — a senior member who knows your context and keeps the follow-through honest.",
+      "note": "Illustrative stewards for the MVP preview — real profiles will replace them.",
+      "chair": {
+        "role": "Chair of stewards",
+        "name": "Placeholder — Chair",
+        "credo": "Trust is built by returning to conversations after the polite ending."
+      },
+      "programs": {
+        "role": "Programs steward",
+        "name": "Placeholder — Programs",
+        "credo": "The best gatherings feel like a smaller room than they are."
+      },
+      "membership": {
+        "role": "Membership steward",
+        "name": "Placeholder — Membership",
+        "credo": "The review is not a filter — it's the first useful conversation."
+      }
+    },
+    "trustMarks": {
+      "label": "Trust marks",
+      "eyebrow": "Trust",
+      "title": "Where the club shows up.",
+      "lead": "A rotating set of the places, press and partners that intersect with member life.",
+      "note": "Placeholder text marks — real partner and press marks will replace them.",
+      "marks": {
+        "pressA": "The Long View",
+        "pressB": "Founders Weekly",
+        "pressC": "Signal & Practice",
+        "partnerA": "North Harbor Advisors",
+        "partnerB": "Meridian Family Office",
+        "partnerC": "Loden Legal",
+        "awardA": "Guild of Stewards 2024",
+        "awardB": "Members' Circle Award",
+        "guildA": "European Founders Guild",
+        "guildB": "Central Europe Owners",
+        "guildC": "Alpine Advisory Society",
+        "guildD": "Nordic Founders Council"
+      }
+    },
+    "statsTimeline": {
+      "label": "Club metrics by year",
+      "eyebrow": "Momentum",
+      "title": "The club, in numbers.",
+      "lead": "Select a year to see how the community compounds: members, cities, introductions and gatherings.",
+      "yearsLabel": "Year",
+      "metrics": {
+        "members": "Members",
+        "cities": "Cities",
+        "intros": "Introductions made",
+        "events": "Gatherings held"
+      },
+      "note": "Illustrative projections for the MVP preview — figures will be replaced with verified club data."
     },
     "testimonials": {
       "eyebrow": "Member perspective",
@@ -116,11 +210,18 @@
       "lead": "These statements describe the product promise; verified member stories will replace them when approved evidence is available.",
       "one": {
         "quote": "A place where an introduction arrives with enough context to make the next conversation worthwhile.",
-        "attribution": "Experience principle — contextual connection"
+        "name": "Founding member",
+        "role": "Placeholder — Founder, retail"
       },
       "two": {
         "quote": "A network where contribution and reputation matter more than reach.",
-        "attribution": "Experience principle — trusted participation"
+        "name": "Member steward",
+        "role": "Placeholder — Advisor, family office"
+      },
+      "three": {
+        "quote": "Every introduction I received arrived with an answer to why it was made.",
+        "name": "Applied advisory guest",
+        "role": "Placeholder — Operator, industrials"
       }
     },
     "cta": {
@@ -153,6 +254,20 @@
       "eyebrow": "Contact",
       "title": "Have a question before you apply?",
       "lead": "Validate your message here. Online delivery is not enabled yet, so no data is sent or stored.",
+      "bullets": {
+        "response": {
+          "title": "A senior member reads it",
+          "text": "Every note is triaged by a steward — not a shared inbox."
+        },
+        "privacy": {
+          "title": "Discretion by default",
+          "text": "Anything you write stays within the review circle and is never shared outside."
+        },
+        "senior": {
+          "title": "Conflicts checked first",
+          "text": "We check for conflicts with existing members before responding."
+        }
+      },
       "form": {
         "name": "Name",
         "email": "Email",
