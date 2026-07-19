@@ -168,6 +168,17 @@
   --kc-offerings-spine-title-spacing: 0.25em;
   --kc-offerings-image-filter: saturate(0.62) contrast(1.06) brightness(0.78);
   --kc-offerings-image-filter-active: saturate(0.82) contrast(1.04) brightness(0.9);
+  --kc-process-duration: 650ms;
+  --kc-process-copy-duration: 420ms;
+  --kc-process-copy-shift: 1rem;
+  --kc-process-image-scale: 1.05;
+  --kc-process-section-padding: clamp(2rem, 5svh, 4rem);
+  --kc-process-stage-height-mobile: clamp(13rem, 30svh, 20rem);
+  --kc-process-stage-height: clamp(15rem, 34svh, 26rem);
+  --kc-process-navigation-height: 8rem;
+  --kc-process-navigation-height-mobile: 6rem;
+  --kc-process-navigation-width-mobile: 9rem;
+  --kc-process-image-filter: saturate(0.7) contrast(1.05) brightness(0.78);
 
   /* === BACKGROUND TEXTURES (assign to background-image) === */
   --kc-bg-dot-matrix:

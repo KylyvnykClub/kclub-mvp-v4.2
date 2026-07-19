@@ -127,6 +127,8 @@
       "eyebrow": "Process",
       "title": "Five clear steps from first note to a lasting membership.",
       "lead": "Fewer forms, more conversation. The same senior team is with you from application through your first year.",
+      "navigationLabel": "Membership process",
+      "progress": "Step {current} of {total}",
       "apply": {
         "title": "Submit an application",
         "text": "Tell us about your background, business context and what a useful membership would look like for you."
