@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { Link } from '../../../i18n/navigation';
+
 type MobileNavProps = Readonly<{
   links: ReadonlyArray<{ href: string; label: string }>;
   label: string;
@@ -27,14 +29,14 @@ export function MobileNav({ links, label, closeLabel }: MobileNavProps) {
       {open ? (
         <nav className="kc-mobile-panel" id="mobile-navigation" aria-label={label}>
           {links.map((link) => (
-            <a
+            <Link
               className="kc-nav-link kc-focus-ring"
               href={link.href}
               key={link.href}
               onClick={() => setOpen(false)}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
       ) : null}
