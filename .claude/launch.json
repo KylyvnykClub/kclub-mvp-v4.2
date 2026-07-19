@@ -5,7 +5,8 @@
       "name": "product-core",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@kclub/product-core", "dev"],
-      "port": 3000
+      "port": 3000,
+      "autoPort": true
     },
     {
       "name": "admin-app",
