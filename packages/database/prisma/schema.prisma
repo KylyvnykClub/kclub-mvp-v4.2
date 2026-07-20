@@ -7,4 +7,131 @@ datasource db {
   provider = "postgresql"
 }
 
-// The initial core models are added in the first reviewed schema slice.
+enum StaffRole {
+  OWNER
+  ADMIN
+  MODERATOR
+  SUPPORT
+  FINANCE
+  CONTENT_MANAGER
+}
+
+model StaffUser {
+  id           String       @id @default(uuid()) @db.Uuid
+  phoneHash    String       @unique @map("phone_hash")
+  phoneCipher  String       @map("phone_cipher")
+  role         StaffRole
+  isActive     Boolean      @default(true) @map("is_active")
+  createdAt    DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime     @updatedAt @map("updated_at") @db.Timestamptz(6)
+  credential   StaffCredential?
+  invites      StaffInvite[]
+  mfaMethods   StaffMfaMethod[]
+  recoveryCodes StaffRecoveryCode[]
+  sessions     StaffSession[]
+  challenges   StaffAuthChallenge[]
+  auditEvents  AuditEvent[] @relation("AuditActor")
+
+  @@map("staff_users")
+}
+
+model StaffAuthChallenge {
+  id         String    @id @default(uuid()) @db.Uuid
+  staffId    String    @map("staff_id") @db.Uuid
+  tokenHash  String    @unique @map("token_hash")
+  purpose    String
+  expiresAt  DateTime  @map("expires_at") @db.Timestamptz(6)
+  consumedAt DateTime? @map("consumed_at") @db.Timestamptz(6)
+  createdAt  DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  staff      StaffUser @relation(fields: [staffId], references: [id], onDelete: Cascade)
+
+  @@index([staffId, expiresAt])
+  @@map("staff_auth_challenges")
+}
+
+model StaffAuthRateLimit {
+  keyHash   String   @id @map("key_hash")
+  count     Int
+  resetAt   DateTime @map("reset_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([resetAt])
+  @@map("staff_auth_rate_limits")
+}
+
+model StaffCredential {
+  staffId      String   @id @map("staff_id") @db.Uuid
+  passwordHash String   @map("password_hash")
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  staff        StaffUser @relation(fields: [staffId], references: [id], onDelete: Cascade)
+
+  @@map("staff_credentials")
+}
+
+model StaffInvite {
+  id          String    @id @default(uuid()) @db.Uuid
+  staffId     String    @map("staff_id") @db.Uuid
+  tokenHash   String    @unique @map("token_hash")
+  expiresAt   DateTime  @map("expires_at") @db.Timestamptz(6)
+  consumedAt  DateTime? @map("consumed_at") @db.Timestamptz(6)
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  staff       StaffUser @relation(fields: [staffId], references: [id], onDelete: Cascade)
+
+  @@index([staffId, expiresAt])
+  @@map("staff_invites")
+}
+
+model StaffMfaMethod {
+  id           String    @id @default(uuid()) @db.Uuid
+  staffId      String    @map("staff_id") @db.Uuid
+  secretCipher String    @map("secret_cipher")
+  verifiedAt   DateTime? @map("verified_at") @db.Timestamptz(6)
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  staff        StaffUser @relation(fields: [staffId], references: [id], onDelete: Cascade)
+
+  @@index([staffId])
+  @@map("staff_mfa_methods")
+}
+
+model StaffRecoveryCode {
+  id         String    @id @default(uuid()) @db.Uuid
+  staffId    String    @map("staff_id") @db.Uuid
+  codeHash   String    @unique @map("code_hash")
+  consumedAt DateTime? @map("consumed_at") @db.Timestamptz(6)
+  createdAt  DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  staff      StaffUser @relation(fields: [staffId], references: [id], onDelete: Cascade)
+
+  @@index([staffId])
+  @@map("staff_recovery_codes")
+}
+
+model StaffSession {
+  id           String    @id @default(uuid()) @db.Uuid
+  staffId      String    @map("staff_id") @db.Uuid
+  tokenHash    String    @unique @map("token_hash")
+  expiresAt    DateTime  @map("expires_at") @db.Timestamptz(6)
+  revokedAt    DateTime? @map("revoked_at") @db.Timestamptz(6)
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  lastSeenAt   DateTime  @default(now()) @map("last_seen_at") @db.Timestamptz(6)
+  staff        StaffUser @relation(fields: [staffId], references: [id], onDelete: Cascade)
+
+  @@index([staffId, expiresAt])
+  @@map("staff_sessions")
+}
+
+model AuditEvent {
+  id           String    @id @default(uuid()) @db.Uuid
+  actorStaffId String?   @map("actor_staff_id") @db.Uuid
+  action       String
+  resourceType String    @map("resource_type")
+  resourceId   String?   @map("resource_id")
+  requestId    String    @map("request_id") @db.Uuid
+  metadata     Json
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  actor        StaffUser? @relation("AuditActor", fields: [actorStaffId], references: [id], onDelete: SetNull)
+
+  @@index([actorStaffId, createdAt])
+  @@index([resourceType, resourceId])
+  @@map("audit_events")
+}

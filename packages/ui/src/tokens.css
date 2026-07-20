@@ -217,6 +217,7 @@
   --kc-size-step: 2.5rem;
   --kc-size-textarea: 7.5rem;
   --kc-layout-sidebar: 22rem;
+  --kc-layout-auth: 30rem;
   --kc-layout-hide-offset: -10000px;
   --kc-z-base: 1;
   --kc-z-sticky: 100;
