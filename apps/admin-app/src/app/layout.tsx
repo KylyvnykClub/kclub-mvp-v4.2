@@ -1,4 +1,3 @@
-import '@ant-design/v5-patch-for-react-19';
 import '@kclub/ui/styles.css';
 import '@refinedev/antd/dist/reset.css';
 import 'antd/dist/reset.css';

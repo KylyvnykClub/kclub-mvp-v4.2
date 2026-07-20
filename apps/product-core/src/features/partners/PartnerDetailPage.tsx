@@ -1,4 +1,4 @@
-import { ArrowLeft, BadgePercent, BriefcaseBusiness, Building2, Globe, MapPin } from 'lucide-react';
+import { ArrowLeft, BadgePercent, BriefcaseBusiness, MapPin } from 'lucide-react';
 import Image, { type StaticImageData } from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
@@ -119,10 +119,7 @@ export async function PartnerDetailPage({ partner }: PartnerDetailPageProps) {
                   </li>
                 </ul>
 
-                <Link
-                  className="kc-button kc-focus-ring kc-partner-detail-cta"
-                  href="/#contact"
-                >
+                <Link className="kc-button kc-focus-ring kc-partner-detail-cta" href="/#contact">
                   {dt('contactClub')}
                 </Link>
               </div>

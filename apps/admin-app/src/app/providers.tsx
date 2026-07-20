@@ -1,5 +1,7 @@
 'use client';
 
+import '@ant-design/v5-patch-for-react-19';
+
 import { RefineThemes, useNotificationProvider } from '@refinedev/antd';
 import { Refine } from '@refinedev/core';
 import routerProvider from '@refinedev/nextjs-router';
