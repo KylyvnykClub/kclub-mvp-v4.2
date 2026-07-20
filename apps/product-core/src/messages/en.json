@@ -15,6 +15,8 @@
       "faq": "FAQ",
       "contact": "Contact",
       "join": "Apply",
+      "dashboard": "Dashboard",
+      "signIn": "Sign in",
       "menu": "Menu",
       "close": "Close"
     },
@@ -218,24 +220,72 @@
       "button": "Apply for membership"
     },
     "faq": {
-      "eyebrow": "Questions",
-      "title": "What to know before applying.",
-      "lead": "Clear expectations help protect the quality of the community.",
-      "membership": {
-        "question": "Who is membership for?",
-        "answer": "The club is intended for founders, operators, specialists and investors who can participate responsibly and contribute useful context."
+      "eyebrow": "Frequently asked questions",
+      "title": "Frequently asked questions",
+      "lead": "Answers to the main questions about membership, the digital card, partners and KYLYVNYK CLUB support.",
+      "whatIsClub": {
+        "question": "What is KYLYVNYK CLUB?",
+        "answer": "KYLYVNYK CLUB is an international business club for members, entrepreneurs, specialists and companies."
       },
-      "business": {
-        "question": "Do I need to own a business?",
-        "answer": "No. Your professional experience and ability to contribute matter more than a specific job title or ownership status."
+      "whoCanJoin": {
+        "question": "Who can become a member?",
+        "answer": "Any adult who has registered and accepted the club rules can become a member."
       },
-      "privacy": {
-        "question": "Is member information public?",
-        "answer": "Member-only information is shown according to product access rules. Approved business information may appear in the public directory."
+      "memberBenefits": {
+        "question": "What does a member receive?",
+        "answer": "A member receives a digital club card and access to special offers from partners."
       },
-      "timing": {
-        "question": "How long does review take?",
-        "answer": "Review timing depends on the context supplied. We do not publish a fixed promise until operational data supports one."
+      "freeRegistration": {
+        "question": "Is registration free?",
+        "answer": "Basic participation is provided free of charge. Some additional functions may be available as part of VIP membership."
+      },
+      "vipBenefits": {
+        "question": "What does VIP membership provide?",
+        "answer": "VIP provides access to additional features and selected club offers. The specific list of benefits is displayed on the platform."
+      },
+      "digitalCard": {
+        "question": "How does the digital club card work?",
+        "answer": "The card with a personal QR code confirms member status. To receive a partner offer, a member may need to present an active card and meet the conditions of the specific offer."
+      },
+      "partnerBenefits": {
+        "question": "What benefits do partners offer?",
+        "answer": "Partners may provide discounts, bonuses, special prices or other terms. Each offer is defined by the partner."
+      },
+      "discountGuarantee": {
+        "question": "Does the club guarantee that a discount will be provided?",
+        "answer": "A partner must follow the terms they have published when a member meets the requirements of the offer. Goods, services and customer service are provided by the partner, not by the club."
+      },
+      "companyRegistration": {
+        "question": "Can a company be registered?",
+        "answer": "Yes. A company representative can create a business profile and submit it for moderation."
+      },
+      "becomePartner": {
+        "question": "How can a company become a club partner?",
+        "answer": "Complete the company profile, confirm the representative's authority, specify special terms for members and submit the application for review."
+      },
+      "catalogTiming": {
+        "question": "When will a company appear in the catalog?",
+        "answer": "After moderation is completed and the profile is approved."
+      },
+      "partnerServiceReview": {
+        "question": "Does the club check all partner goods and services?",
+        "answer": "The club moderates business profiles before publication, but it is not the seller or provider of partner goods and services."
+      },
+      "countries": {
+        "question": "In which countries does the club operate?",
+        "answer": "The platform is intended for an international community and is open to members and companies from different countries, provided this does not contradict applicable law or club rules."
+      },
+      "memberData": {
+        "question": "Are member details published?",
+        "answer": "Personal data is processed in accordance with the Privacy Policy. The visibility of specific details depends on platform functions and profile settings."
+      },
+      "cancelVip": {
+        "question": "Can a VIP subscription be canceled?",
+        "answer": "Yes. Subscription management is available in the personal account, subject to the terms of the selected plan."
+      },
+      "support": {
+        "question": "How can I contact support?",
+        "answer": "Through the feedback form or the club's official email address."
       }
     },
     "contact": {
@@ -413,85 +463,258 @@
       "contactClub": "Request introduction"
     }
   },
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "lead": "Enter your phone number and password to access your account.",
+      "phone": "Phone number",
+      "password": "Password",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "register": "Create account",
+      "forgotPassword": "Forgot password?"
+    },
+    "register": {
+      "title": "Create account",
+      "lead": "Join KYLYVNYK CLUB — start with your phone number.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "phone": "Phone number",
+      "password": "Password",
+      "passwordHint": "At least 8 characters",
+      "submit": "Create account",
+      "hasAccount": "Already have an account?",
+      "login": "Sign in"
+    },
+    "errors": {
+      "phoneRequired": "Enter your phone number.",
+      "passwordRequired": "Enter your password.",
+      "passwordTooShort": "Password must be at least 8 characters.",
+      "passwordTooLong": "Password is too long.",
+      "firstNameRequired": "Enter your first name.",
+      "lastNameRequired": "Enter your last name.",
+      "nameTooLong": "Name is too long.",
+      "confirmPasswordRequired": "Confirm your password.",
+      "passwordsMismatch": "Passwords do not match.",
+      "invalidCredentials": "Invalid phone number or password.",
+      "phoneExists": "An account with this phone number already exists.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "dashboard": {
+    "nav": {
+      "overview": "Overview",
+      "profile": "Profile",
+      "membership": "Membership",
+      "billing": "Billing",
+      "settings": "Settings",
+      "backToSite": "Back to site",
+      "signOut": "Sign out"
+    },
+    "overview": {
+      "title": "Dashboard",
+      "greeting": "Welcome, {name}",
+      "lead": "Manage your profile, membership and account settings.",
+      "membershipStatus": "Membership status",
+      "plan": "Current plan",
+      "statusSubmitted": "Submitted",
+      "statusUnderReview": "Under review",
+      "statusApproved": "Approved",
+      "statusRejected": "Rejected",
+      "statusNone": "Not submitted",
+      "freePlan": "Free",
+      "links": {
+        "profile": {
+          "title": "Edit profile",
+          "desc": "Update your personal information"
+        },
+        "membership": {
+          "title": "Membership",
+          "desc": "View or submit your application"
+        },
+        "billing": {
+          "title": "Billing",
+          "desc": "Manage your plan and payments"
+        },
+        "settings": {
+          "title": "Settings",
+          "desc": "Password, language, theme"
+        }
+      }
+    },
+    "profile": {
+      "title": "Profile",
+      "lead": "Your personal and professional information.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "displayName": "Display name",
+      "company": "Company",
+      "position": "Position",
+      "bio": "Bio",
+      "city": "City",
+      "country": "Country",
+      "phone": "Phone",
+      "save": "Save changes",
+      "saving": "Saving…",
+      "saved": "Profile saved successfully."
+    },
+    "membership": {
+      "title": "Membership",
+      "lead": "Your membership application and status.",
+      "applyTitle": "Apply for membership",
+      "applyLead": "Submit your application to join KYLYVNYK CLUB. Tell us about your motivation and how you heard about us.",
+      "motivation": "Why do you want to join?",
+      "motivationPlaceholder": "Tell us about your professional background and what you hope to gain from the club…",
+      "referralSource": "How did you hear about us?",
+      "referralSourcePlaceholder": "A friend, social media, press, etc.",
+      "submit": "Submit application",
+      "submitting": "Submitting…",
+      "submitted": "Application submitted successfully.",
+      "statusTitle": "Application status",
+      "statusLead": "Track the progress of your membership application.",
+      "steps": {
+        "submitted": "Submitted",
+        "underReview": "Under review",
+        "decision": "Decision"
+      },
+      "approved": "Your application has been approved. Welcome to KYLYVNYK CLUB!",
+      "rejected": "Your application was not approved at this time.",
+      "reviewNote": "Review note",
+      "errors": {
+        "motivationTooShort": "Please write at least 10 characters.",
+        "motivationTooLong": "Motivation is too long."
+      }
+    },
+    "billing": {
+      "title": "Billing",
+      "lead": "Manage your membership plan and payment history.",
+      "currentPlan": "Current plan",
+      "plans": {
+        "free": {
+          "name": "Free",
+          "price": "€0",
+          "period": "forever",
+          "features": {
+            "profile": "Club profile",
+            "partners": "Partner catalog access",
+            "card": "Digital club card"
+          }
+        },
+        "vip": {
+          "name": "VIP",
+          "price": "€49",
+          "period": "per month",
+          "features": {
+            "all": "Everything in Free",
+            "introductions": "Curated introductions",
+            "circles": "Access to circles",
+            "gatherings": "Priority for gatherings",
+            "steward": "Personal steward"
+          }
+        }
+      },
+      "comingSoon": "Payment processing will be available soon.",
+      "active": "Active",
+      "upgrade": "Upgrade"
+    },
+    "settings": {
+      "title": "Settings",
+      "lead": "Manage your account preferences and security.",
+      "password": {
+        "title": "Change password",
+        "desc": "Update the password used to sign in.",
+        "current": "Current password",
+        "new": "New password",
+        "confirm": "Confirm new password",
+        "submit": "Update password",
+        "saving": "Updating…",
+        "saved": "Password updated successfully."
+      },
+      "language": {
+        "title": "Language",
+        "desc": "Choose your preferred language.",
+        "en": "English",
+        "ru": "Русский",
+        "uk": "Українська"
+      },
+      "theme": {
+        "title": "Theme",
+        "desc": "Choose the appearance of the interface."
+      },
+      "signOut": {
+        "title": "Sign out",
+        "desc": "End your current session.",
+        "button": "Sign out"
+      },
+      "danger": {
+        "title": "Delete account",
+        "desc": "Permanently remove your account and all associated data. This action cannot be undone.",
+        "button": "Delete account",
+        "comingSoon": "Account deletion will be available in a future update."
+      }
+    }
+  },
   "about": {
     "meta": {
       "title": "About the club",
-      "description": "How KYLYVNYK CLUB builds trusted business relationships through context, discretion and thoughtful stewardship."
+      "description": "KYLYVNYK CLUB is an international business club uniting members, entrepreneurs, specialists and companies from around the world."
     },
     "hero": {
-      "eyebrow": "About KYLYVNYK CLUB",
-      "title": "Leading with integrity and purpose.",
-      "metrics": {
-        "reviewed": { "value": "1,000+", "label": "members and applicants reviewed" },
-        "formats": { "value": "5", "label": "working club formats" },
-        "languages": { "value": "3", "label": "languages supported" },
-        "steward": { "value": "1", "label": "named steward for every member" }
-      }
-    },
-    "story": {
-      "eyebrow": "Our story",
-      "title": "A private circle built around the quality of each introduction, not the size of a contact list.",
-      "text": "KYLYVNYK CLUB brings together founders, operators, specialists and investors who value useful context. The product is deliberately personal: applications are reviewed, introductions are considered and every member journey has an accountable steward.",
-      "markersLabel": "Club principles",
-      "cta": "Start an application"
+      "eyebrow": "About the club",
+      "title": "An international community built on trust.",
+      "text1": "KYLYVNYK CLUB is an international business club uniting members, entrepreneurs, specialists and companies from different countries.",
+      "text2": "Members receive a digital club card and access to exclusive partner offers, while companies can showcase their business, attract new clients and develop international business connections.",
+      "text3": "We are building a community based on trust, mutual benefit and long-term collaboration."
     },
     "mission": {
       "eyebrow": "Our mission",
-      "title": "Make valuable business relationships easier to begin and worthy of keeping.",
-      "text": "We create the conditions for trust before asking people to transact. That means clear standards, careful context and follow-through after the first conversation.",
-      "imageAlt": "A connected city representing the club network",
-      "principles": {
-        "context": "Context before contact",
-        "discretion": "Discretion by default",
-        "reciprocity": "Contribution creates access"
+      "title": "Uniting people and business worldwide.",
+      "text": "Our mission is to create an international community where members gain valuable benefits, companies find new clients, and entrepreneurs and specialists develop business connections.",
+      "imageAlt": "A connected city representing the club network"
+    },
+    "audience": {
+      "eyebrow": "Who the club is for",
+      "title": "Built for different goals.",
+      "members": {
+        "title": "For members",
+        "text": "Receive a digital club card and enjoy exclusive offers from partners."
+      },
+      "entrepreneurs": {
+        "title": "For entrepreneurs and specialists",
+        "text": "Expand your professional network and discover new collaboration opportunities."
+      },
+      "companies": {
+        "title": "For companies",
+        "text": "Showcase your business, offer members exclusive terms and attract new clients."
       }
     },
-    "work": {
-      "eyebrow": "What we do",
-      "title": "Formats designed for useful exchange.",
-      "lead": "Five ways to turn shared context into focused conversations, decisions and long-term relationships.",
-      "ctaEyebrow": "Membership",
-      "ctaTitle": "Bring your context into the circle.",
-      "ctaLabel": "Apply for consideration"
-    },
-    "values": {
-      "eyebrow": "Our values",
-      "title": "Trust is a product decision.",
-      "text": "Review, privacy and stewardship are not campaign language. They are the operating constraints that shape who enters, how people meet and what happens next.",
-      "imageAlt": "Global companies connected through a trusted network",
-      "metrics": {
-        "review": { "value": "100%", "label": "of applications individually reviewed" },
-        "formats": { "value": "5", "label": "formats with a clear purpose" },
-        "locale": { "value": "EN · RU · UK", "label": "full localized experience" }
-      }
-    },
-    "trust": {
-      "eyebrow": "Recognition and trust",
-      "title": "Signals that will be verified, not invented.",
-      "lead": "This interactive index shows the intended recognition layer while the club prepares approved evidence.",
-      "navigationLabel": "Trust signals",
-      "note": "Placeholder press and guild marks for the MVP preview — confirmed mentions and partner evidence will replace them.",
-      "items": {
-        "longView": {
-          "label": "The Long View",
-          "category": "Placeholder press",
-          "text": "An editorial placeholder for future independent coverage of the club's long-term approach."
-        },
-        "foundersGuild": {
-          "label": "European Founders Guild",
-          "category": "Placeholder guild",
-          "text": "A guild placeholder representing trusted founder networks that may intersect with member life."
-        },
-        "meridian": {
-          "label": "Meridian Family Office",
-          "category": "Placeholder partner",
-          "text": "A partner placeholder for future verified organizations supporting member decisions."
-        },
-        "stewards": {
-          "label": "Guild of Stewards",
-          "category": "Placeholder recognition",
-          "text": "A recognition placeholder for stewardship standards; it is not presented as a confirmed award."
-        }
+    "why": {
+      "eyebrow": "Why KYLYVNYK CLUB",
+      "title": "What makes the club different.",
+      "cta": "Apply for membership",
+      "international": {
+        "title": "International community",
+        "text": "Members and companies from countries around the world."
+      },
+      "card": {
+        "title": "Digital club card",
+        "text": "A personal card with a QR code confirms your club membership status."
+      },
+      "offers": {
+        "title": "Exclusive offers",
+        "text": "Partners independently provide members with discounts, bonuses or other published terms."
+      },
+      "catalog": {
+        "title": "Partner catalog",
+        "text": "Find companies, services and available offers in one place."
+      },
+      "connections": {
+        "title": "Business connections",
+        "text": "Build professional contacts within an international community."
+      },
+      "privacy": {
+        "title": "Privacy",
+        "text": "We pay special attention to protecting members' personal data."
       }
     }
   }
