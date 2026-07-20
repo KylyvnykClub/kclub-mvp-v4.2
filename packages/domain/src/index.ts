@@ -13,3 +13,5 @@ export const canTransitionMembershipApplication = (
   from: MembershipApplicationStatus,
   to: MembershipApplicationStatus,
 ): boolean => allowedTransitions[from].includes(to);
+
+export * from './staff-rbac';

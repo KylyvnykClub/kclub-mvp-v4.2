@@ -1,10 +1,14 @@
-export default function AdminHomePage() {
+import { redirect } from 'next/navigation';
+import { readStaffSession } from '../server/admin-api';
+import { AdminShell } from '../features/shell/admin-shell';
+import { AdminOverview } from '../features/dashboard/admin-overview';
+
+export default async function AdminHomePage() {
+  const session = await readStaffSession();
+  if (session === null) redirect('/sign-in');
   return (
-    <main className="kc-page" data-section="admin-home">
-      <div className="kc-container kc-stack">
-        <p className="kc-eyebrow">OPERATIONS</p>
-        <h1 className="kc-title">Admin application foundation is ready.</h1>
-      </div>
-    </main>
+    <AdminShell session={session}>
+      <AdminOverview staff={session.staff} />
+    </AdminShell>
   );
 }
