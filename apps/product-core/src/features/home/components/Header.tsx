@@ -5,9 +5,14 @@ import { Link } from '../../../i18n/navigation';
 import { MobileNav } from './MobileNav';
 import { PromoBar } from './PromoBar';
 import { ThemeToggle } from '../../theme/ThemeToggle';
+import { createClient } from '../../../lib/supabase/server';
 
 export async function Header() {
   const t = await getTranslations('home');
+
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   const links = [
     { href: '/about', label: t('nav.about') },
     { href: '/partners', label: t('nav.partners') },
@@ -44,9 +49,15 @@ export async function Header() {
               lightLabel={t('theme.light')}
               darkLabel={t('theme.dark')}
             />
-            <Link className="kc-button kc-focus-ring kc-header-cta" data-size="sm" href="/#contact">
-              {t('nav.join')}
-            </Link>
+            {user ? (
+              <Link className="kc-button kc-focus-ring kc-header-cta" data-size="sm" href="/dashboard">
+                {t('nav.dashboard')}
+              </Link>
+            ) : (
+              <Link className="kc-button kc-focus-ring kc-header-cta" data-size="sm" href="/auth/login">
+                {t('nav.signIn')}
+              </Link>
+            )}
             <MobileNav links={links} label={t('nav.menu')} closeLabel={t('nav.close')} />
           </div>
         </div>
