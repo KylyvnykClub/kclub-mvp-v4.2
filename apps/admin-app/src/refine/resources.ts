@@ -12,4 +12,10 @@ export const ADMIN_RESOURCES: (ResourceProps & { meta: AdminResourceMeta })[] = 
     list: '/',
     meta: { label: 'Overview', permission: 'DASHBOARD_VIEW' },
   },
+  {
+    name: 'members',
+    list: '/members',
+    show: '/members/:id',
+    meta: { label: 'Members', permission: 'MEMBER_VIEW' },
+  },
 ];

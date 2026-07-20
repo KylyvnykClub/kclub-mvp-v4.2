@@ -64,6 +64,42 @@ export type StaffActivationDto = Readonly<{
   recoveryCodes: readonly string[];
 }>;
 
+export type MemberApplicationDto = Readonly<{
+  id: string;
+  motivation: string | null;
+  referralSource: string | null;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+}>;
+
+export type MemberListItemDto = Readonly<{
+  id: string;
+  phone: string;
+  firstName: string;
+  lastName: string;
+  displayName: string | null;
+  company: string | null;
+  position: string | null;
+  city: string | null;
+  country: string | null;
+  preferredLocale: string;
+  createdAt: string;
+  updatedAt: string;
+  application: MemberApplicationDto | null;
+}>;
+
+export type MemberDetailDto = MemberListItemDto &
+  Readonly<{
+    supabaseUserId: string;
+    bio: string | null;
+  }>;
+
+export type MemberListResponseDto = Readonly<{
+  items: readonly MemberListItemDto[];
+  total: number;
+}>;
+
 export type StaffMfaChallengeDto = Readonly<{
   challengeToken: string;
   expiresAt: string;

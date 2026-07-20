@@ -1,4 +1,10 @@
-import type { AccessControlProvider, AuthActionResponse, AuthProvider, DataProvider } from '@refinedev/core';
+import type {
+  AccessControlProvider,
+  AuthActionResponse,
+  AuthProvider,
+  BaseRecord,
+  DataProvider,
+} from '@refinedev/core';
 import { STAFF_PERMISSIONS } from '@kclub/contracts';
 import type {
   StaffActivationDto,
@@ -94,13 +100,43 @@ export const accessControlProvider: AccessControlProvider = {
   options: { buttons: { enableAccessControl: true, hideIfUnauthorized: true } },
 };
 
-const unavailable = async (): Promise<never> => {
-  throw new Error('No CRUD resources are enabled in this foundation slice.');
+const RESOURCE_TO_PATH: Record<string, string> = {
+  members: 'users',
 };
+
+const unavailable = async (): Promise<never> => {
+  throw new Error('No CRUD resources are enabled for this resource.');
+};
+
 export const dataProvider: DataProvider = {
   getApiUrl: () => '/api/proxy',
-  getList: unavailable,
-  getOne: unavailable,
+  getList: async ({ resource, pagination, filters }) => {
+    const path = RESOURCE_TO_PATH[resource];
+    if (path === undefined) return unavailable();
+    const params = new URLSearchParams();
+    const pag = pagination as { current?: number; pageSize?: number } | undefined;
+    if (pag?.current) params.set('page', String(pag.current));
+    if (pag?.pageSize) params.set('pageSize', String(pag.pageSize));
+    const searchFilter = filters?.find(
+      (f) => 'field' in f && f.field === 'search',
+    );
+    if (searchFilter && 'value' in searchFilter && searchFilter.value)
+      params.set('search', String(searchFilter.value));
+    const response = await fetch(`/api/proxy/${path}?${params.toString()}`);
+    if (!response.ok) throw new Error(`Failed to fetch ${resource}`);
+    const body = (await response.json()) as { data: { items: BaseRecord[]; total: number } };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return { data: body.data.items, total: body.data.total } as any;
+  },
+  getOne: async ({ resource, id }) => {
+    const path = RESOURCE_TO_PATH[resource];
+    if (path === undefined) return unavailable();
+    const response = await fetch(`/api/proxy/${path}/${encodeURIComponent(String(id))}`);
+    if (!response.ok) throw new Error(`Failed to fetch ${resource}/${id}`);
+    const body = (await response.json()) as { data: BaseRecord };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return { data: body.data } as any;
+  },
   create: unavailable,
   update: unavailable,
   deleteOne: unavailable,
