@@ -2,6 +2,9 @@
   "name": "@kclub/database",
   "version": "0.1.0",
   "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "scripts": {
     "db:deploy": "prisma migrate deploy --config prisma.config.ts",
     "db:generate": "prisma generate --config prisma.config.ts",
@@ -10,10 +13,13 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@prisma/client": "^7.5.0"
+    "@prisma/adapter-pg": "^7.6.0",
+    "@prisma/client": "^7.6.0",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
-    "prisma": "^7.5.0"
+    "@types/pg": "^8.15.5",
+    "prisma": "^7.6.0"
   }
 }
