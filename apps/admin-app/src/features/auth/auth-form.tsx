@@ -2,6 +2,7 @@
 
 import { useLogin } from '@refinedev/core';
 import { Alert, Button, Card, Form, Input, List, QRCode, Space, Typography } from 'antd';
+import { useRouter } from 'next/navigation';
 import { useState, type ReactNode } from 'react';
 import { messages } from '../../messages/en';
 import type { StaffActivationAuthResponse, StaffAuthLoginParams } from '../../refine/providers';
@@ -20,6 +21,7 @@ type StaffAuthFormValues = Readonly<{
 }>;
 
 export const AuthForm = ({ mode }: Readonly<{ mode: Mode }>): ReactNode => {
+  const router = useRouter();
   const [error, setError] = useState<string>();
   const [activation, setActivation] = useState<ActivationResult>();
   const [awaitingMfa, setAwaitingMfa] = useState(mode === 'mfa');
@@ -28,6 +30,11 @@ export const AuthForm = ({ mode }: Readonly<{ mode: Mode }>): ReactNode => {
       onSuccess: (response) => {
         if (!response.success) {
           setError(messages.genericError);
+          return;
+        }
+        if (response.redirectTo !== undefined) {
+          router.replace(response.redirectTo);
+          router.refresh();
           return;
         }
         const activationResponse = response as StaffActivationAuthResponse;
@@ -115,16 +122,14 @@ export const AuthForm = ({ mode }: Readonly<{ mode: Mode }>): ReactNode => {
       {mode === 'sign-in' ? (
         <>
           <Form.Item name="phone" label={messages.phone} rules={[{ required: true }]}>
-            <Input
-              autoComplete="username"
-              placeholder="+12025550123"
-            />
+            <Input autoComplete="username" placeholder="+12025550123" />
           </Form.Item>
-          <Form.Item name="password" label={messages.password} rules={[{ required: true, min: 12 }]}>
-            <Input
-              type="password"
-              autoComplete="current-password"
-            />
+          <Form.Item
+            name="password"
+            label={messages.password}
+            rules={[{ required: true, min: 12 }]}
+          >
+            <Input type="password" autoComplete="current-password" />
           </Form.Item>
         </>
       ) : null}
@@ -139,10 +144,7 @@ export const AuthForm = ({ mode }: Readonly<{ mode: Mode }>): ReactNode => {
             extra={messages.passwordHint}
             rules={[{ required: true, min: 12 }]}
           >
-            <Input
-              type="password"
-              autoComplete="new-password"
-            />
+            <Input type="password" autoComplete="new-password" />
           </Form.Item>
         </>
       ) : null}
