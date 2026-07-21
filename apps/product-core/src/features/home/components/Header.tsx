@@ -12,7 +12,9 @@ export async function Header() {
   const t = await getTranslations('home');
 
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   const links = [
     { href: '/about', label: t('nav.about') },
@@ -44,7 +46,7 @@ export async function Header() {
             ))}
           </nav>
           <div className="kc-header-actions">
-            <LanguageSwitcher />
+            <LanguageSwitcher title={t('footer.languages')} />
             <ThemeToggle
               label={t('theme.label')}
               systemLabel={t('theme.system')}
@@ -52,11 +54,19 @@ export async function Header() {
               darkLabel={t('theme.dark')}
             />
             {user ? (
-              <Link className="kc-button kc-focus-ring kc-header-cta" data-size="sm" href="/dashboard">
+              <Link
+                className="kc-button kc-focus-ring kc-header-cta"
+                data-size="sm"
+                href="/dashboard"
+              >
                 {t('nav.dashboard')}
               </Link>
             ) : (
-              <Link className="kc-button kc-focus-ring kc-header-cta" data-size="sm" href="/auth/login">
+              <Link
+                className="kc-button kc-focus-ring kc-header-cta"
+                data-size="sm"
+                href="/auth/login"
+              >
                 {t('nav.signIn')}
               </Link>
             )}

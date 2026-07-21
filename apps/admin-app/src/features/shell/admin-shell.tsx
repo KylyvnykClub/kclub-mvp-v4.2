@@ -22,6 +22,7 @@ const AdminShellContent = ({
 }: Readonly<{ children: ReactNode; session: StaffSessionDto }>): ReactNode => {
   const { data: identity } = useGetIdentity<StaffSessionDto['staff']>();
   const staff = identity ?? session.staff;
+  console.log('[DEBUG] AdminShellContent:', { identity, sessionStaff: session.staff, session });
 
   return (
     <ThemedLayout Header={() => <AdminHeader staff={staff} />} Title={AdminTitle}>

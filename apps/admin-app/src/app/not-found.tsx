@@ -8,15 +8,19 @@ export default function AdminNotFound(): ReactNode {
   const router = useRouter();
 
   return (
-    <Result
-      extra={
-        <Button onClick={() => router.push('/')} type="primary">
-          Go Home
-        </Button>
-      }
-      status="404"
-      subTitle="The page you visited does not exist."
-      title="404"
-    />
+    <html lang="en">
+      <body className="kc-app">
+        <Result
+          extra={
+            <Button onClick={() => router.push('/')} type="primary">
+              Go Home
+            </Button>
+          }
+          status="404"
+          subTitle="The page you visited does not exist."
+          title="404"
+        />
+      </body>
+    </html>
   );
 }

@@ -9,7 +9,10 @@ test('@smoke renders the localized public home page', async ({ page }) => {
   await expect(page.locator('[data-section="faq"]')).toBeVisible();
   await expect(page.locator('[data-section="contact"]')).toBeVisible();
   await expect(page.locator('[data-section="footer"]')).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Українська' })).toBeVisible();
+  const languageTrigger = page.getByRole('button', { name: 'Language: English' });
+  await expect(languageTrigger).toBeVisible();
+  await languageTrigger.click();
+  await expect(page.getByText('Українська', { exact: true })).toBeVisible();
 });
 
 test('@smoke redirects the bare route to the default locale', async ({ page }) => {
@@ -68,6 +71,8 @@ test('@smoke renders the localized About composition and shared shell', async ({
   }));
   expect(dimensions.pageWidth).toBeLessThanOrEqual(dimensions.viewportWidth);
 
+  const languageTrigger = page.getByRole('button', { name: 'Language: English' });
+  await languageTrigger.click();
   await page.getByRole('link', { name: 'Русский' }).click();
   await expect(page).toHaveURL(/\/ru\/about$/);
 });
