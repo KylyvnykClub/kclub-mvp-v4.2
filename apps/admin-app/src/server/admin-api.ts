@@ -1,6 +1,7 @@
 import 'server-only';
 
 import type { ApiResponse, StaffSessionDto } from '@kclub/contracts';
+import { logError } from '@kclub/observability';
 import { cookies } from 'next/headers';
 
 export const SESSION_COOKIE = 'kclub_staff_session';
@@ -11,16 +12,35 @@ export const callProductCore = async <T>(
   path: string,
   init?: RequestInit,
 ): Promise<{ body: ApiResponse<T>; status: number }> => {
-  const response = await fetch(`${coreUrl()}${path}`, {
-    ...init,
-    cache: 'no-store',
-    headers: {
-      'content-type': 'application/json',
-      'x-request-id': crypto.randomUUID(),
-      ...init?.headers,
-    },
-  });
-  return { body: (await response.json()) as ApiResponse<T>, status: response.status };
+  const requestId = crypto.randomUUID();
+  let response: Response;
+  try {
+    response = await fetch(`${coreUrl()}${path}`, {
+      ...init,
+      cache: 'no-store',
+      headers: {
+        'content-type': 'application/json',
+        'x-request-id': requestId,
+        ...init?.headers,
+      },
+    });
+  } catch (error) {
+    logError(error, { scope: 'admin-app.callProductCore.fetch', requestId, extra: { path } });
+    return {
+      body: { error: { code: 'INTERNAL_ERROR', message: 'INTERNAL_ERROR', requestId } },
+      status: 502,
+    };
+  }
+
+  try {
+    return { body: (await response.json()) as ApiResponse<T>, status: response.status };
+  } catch (error) {
+    logError(error, { scope: 'admin-app.callProductCore.json', requestId, extra: { path, status: response.status } });
+    return {
+      body: { error: { code: 'INTERNAL_ERROR', message: 'INTERNAL_ERROR', requestId } },
+      status: 502,
+    };
+  }
 };
 
 export const readStaffSession = async (): Promise<StaffSessionDto | null> => {

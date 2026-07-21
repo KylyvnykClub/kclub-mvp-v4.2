@@ -136,6 +136,60 @@ model AuditEvent {
   @@map("audit_events")
 }
 
+enum PartnerCategory {
+  ADVISORY
+  FINANCE
+  LEGAL
+  TECHNOLOGY
+}
+
+enum SubscriptionStatus {
+  NONE
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  EXPIRED
+}
+
+enum ClubCardStatus {
+  ACTIVE
+  REVOKED
+  EXPIRED
+}
+
+model Partner {
+  id                   String              @id @default(uuid()) @db.Uuid
+  slug                 String              @unique
+  category             PartnerCategory
+  country              String
+  city                 String?
+  phone                String?
+  discountPercent      Int                 @map("discount_percent")
+  image                String
+  translations         Json
+  isActive             Boolean             @default(true) @map("is_active")
+  sortOrder            Int                 @default(0) @map("sort_order")
+
+  ownerId              String?             @map("owner_id") @db.Uuid
+  owner                Member?             @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+
+  featuredTop          Boolean             @default(false) @map("featured_top")
+  featuredRecommended  Boolean             @default(false) @map("featured_recommended")
+
+  stripeCustomerId     String?             @map("stripe_customer_id")
+  stripeSubscriptionId String?             @unique @map("stripe_subscription_id")
+  stripePriceId        String?             @map("stripe_price_id")
+  subscriptionStatus   SubscriptionStatus  @default(NONE) @map("subscription_status")
+  currentPeriodStart   DateTime?           @map("current_period_start") @db.Timestamptz(6)
+  currentPeriodEnd     DateTime?           @map("current_period_end") @db.Timestamptz(6)
+  cancelAtPeriodEnd    Boolean             @default(false) @map("cancel_at_period_end")
+
+  createdAt            DateTime            @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt            DateTime            @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("partners")
+}
+
 model Member {
   id              String   @id @default(uuid()) @db.Uuid
   supabaseUserId  String   @unique @map("supabase_user_id")
@@ -154,9 +208,29 @@ model Member {
   createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
 
+  partners              Partner[]
   membershipApplication MembershipApplication?
+  clubCards             ClubCard[]
 
   @@map("members")
+}
+
+model ClubCard {
+  id         String         @id @default(uuid()) @db.Uuid
+  memberId   String         @map("member_id") @db.Uuid
+  cardNumber String         @unique @map("card_number")
+  publicId   String         @unique @map("public_id")
+  tier       String         @default("MEMBER")
+  status     ClubCardStatus @default(ACTIVE)
+  issuedAt   DateTime       @default(now()) @map("issued_at") @db.Timestamptz(6)
+  expiresAt  DateTime       @map("expires_at") @db.Timestamptz(6)
+  createdAt  DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime       @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  member Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  @@index([memberId, status])
+  @@map("club_cards")
 }
 
 model MembershipApplication {
@@ -172,4 +246,15 @@ model MembershipApplication {
   member         Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
 
   @@map("membership_applications")
+}
+
+model StripeWebhookEvent {
+  id            String    @id @default(uuid()) @db.Uuid
+  stripeEventId String    @unique @map("stripe_event_id")
+  type          String
+  payload       Json
+  processedAt   DateTime? @map("processed_at") @db.Timestamptz(6)
+  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@map("stripe_webhook_events")
 }

@@ -4,12 +4,15 @@ import {
   requestIdFor,
   staffAuthService,
   success,
+  withErrorHandling,
 } from '../../../../../../server/staff-auth-http';
 
 export const GET = async (request: Request): Promise<Response> => {
   const requestId = requestIdFor(request);
+  return withErrorHandling(requestId, async () => {
   const token = bearerToken(request);
   if (token === null) return failure('UNAUTHORIZED', requestId, 401);
   const session = await staffAuthService().getSession(token);
   return session === null ? failure('UNAUTHORIZED', requestId, 401) : success(session, requestId);
+  });
 };

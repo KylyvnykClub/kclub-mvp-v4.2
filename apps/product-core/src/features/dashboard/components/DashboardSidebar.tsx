@@ -1,16 +1,6 @@
 'use client';
 
-import {
-  LayoutDashboard,
-  User,
-  ShieldCheck,
-  CreditCard,
-  Settings,
-  ArrowLeft,
-  LogOut,
-  X,
-  Menu,
-} from 'lucide-react';
+import { LayoutDashboard, User, BriefcaseBusiness, ArrowLeft, LogOut, X, Menu } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
@@ -21,17 +11,21 @@ type SidebarProps = {
   locale: string;
   memberName: string;
   memberInitials: string;
+  showBusiness: boolean;
 };
 
 const NAV_ITEMS = [
-  { href: '/dashboard', key: 'overview', icon: LayoutDashboard },
-  { href: '/dashboard/profile', key: 'profile', icon: User },
-  { href: '/dashboard/membership', key: 'membership', icon: ShieldCheck },
-  { href: '/dashboard/billing', key: 'billing', icon: CreditCard },
-  { href: '/dashboard/settings', key: 'settings', icon: Settings },
+  { href: '/dashboard', key: 'overview', icon: LayoutDashboard, visible: true },
+  { href: '/dashboard/profile', key: 'account', icon: User, visible: true },
+  { href: '/dashboard/business', key: 'business', icon: BriefcaseBusiness, visible: false },
 ] as const;
 
-export function DashboardSidebar({ locale, memberName, memberInitials }: SidebarProps) {
+export function DashboardSidebar({
+  locale,
+  memberName,
+  memberInitials,
+  showBusiness,
+}: SidebarProps) {
   const t = useTranslations('dashboard.nav');
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -60,11 +54,7 @@ export function DashboardSidebar({ locale, memberName, memberInitials }: Sidebar
           <Link href="/" className="kc-sidebar-brand">
             KYLYVNYK CLUB
           </Link>
-          <button
-            className="kc-sidebar-close"
-            onClick={() => setOpen(false)}
-            aria-label="Close"
-          >
+          <button className="kc-sidebar-close" onClick={() => setOpen(false)} aria-label="Close">
             <X size={18} />
           </button>
         </div>
@@ -81,10 +71,18 @@ export function DashboardSidebar({ locale, memberName, memberInitials }: Sidebar
 
         <nav className="kc-sidebar-nav">
           {NAV_ITEMS.map(({ href, key, icon: Icon }) => {
+            if (key === 'business' && !showBusiness) {
+              return null;
+            }
+
             const isActive =
-              href === '/dashboard'
-                ? pathname === '/dashboard'
-                : pathname.startsWith(href);
+              href === '/dashboard' ? pathname === '/dashboard' : pathname.startsWith(href);
+            const label =
+              key === 'account'
+                ? `${t('profile')} / ${t('settings')}`
+                : key === 'business'
+                  ? 'Business'
+                  : t(key as Parameters<typeof t>[0]);
 
             return (
               <Link
@@ -95,18 +93,14 @@ export function DashboardSidebar({ locale, memberName, memberInitials }: Sidebar
                 onClick={() => setOpen(false)}
               >
                 <Icon size={18} />
-                {t(key as Parameters<typeof t>[0])}
+                {label}
               </Link>
             );
           })}
         </nav>
 
         <div className="kc-sidebar-footer">
-          <Link
-            href="/"
-            className="kc-sidebar-link"
-            onClick={() => setOpen(false)}
-          >
+          <Link href="/" className="kc-sidebar-link" onClick={() => setOpen(false)}>
             <ArrowLeft size={18} />
             {t('backToSite')}
           </Link>

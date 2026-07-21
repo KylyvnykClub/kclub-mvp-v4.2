@@ -6,10 +6,9 @@ import { notFound } from 'next/navigation';
 import { PartnersCatalogPage } from '../../../features/partners/PartnersCatalogPage';
 import {
   PARTNER_CATEGORIES,
-  PARTNER_COUNTRIES,
   type PartnerCategory,
-  type PartnerCountry,
 } from '../../../features/partners/data';
+import { listPartners } from '../../../features/partners/repository';
 import { routing } from '../../../i18n/routing';
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
@@ -29,8 +28,8 @@ const parsePositiveInteger = (value: string | undefined, fallback: number) => {
 const isCategory = (value: string | undefined): value is PartnerCategory =>
   PARTNER_CATEGORIES.some((category) => category === value);
 
-const isCountry = (value: string | undefined): value is PartnerCountry =>
-  PARTNER_COUNTRIES.some((country) => country === value);
+const isCountry = (value: string | undefined): value is string =>
+  typeof value === 'string' && value.length > 0;
 
 export async function generateMetadata({ params }: PartnersRouteProps): Promise<Metadata> {
   const { locale } = await params;
@@ -64,8 +63,12 @@ export default async function PartnersRoute({ params, searchParams }: PartnersRo
   const discount = parsePositiveInteger(firstValue(query.discount), 0);
   const page = parsePositiveInteger(firstValue(query.page), 1);
 
+  const partners = await listPartners(locale);
+
   return (
     <PartnersCatalogPage
+      partners={partners}
+      locale={locale}
       filters={{
         ...(isCategory(category) ? { category } : {}),
         ...(isCountry(country) ? { country } : {}),

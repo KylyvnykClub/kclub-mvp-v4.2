@@ -31,6 +31,8 @@ export const STAFF_PERMISSIONS = [
   'DASHBOARD_VIEW',
   'MEMBER_VIEW',
   'MEMBER_MANAGE',
+  'PARTNER_VIEW',
+  'PARTNER_MANAGE',
   'CARD_MANAGE',
   'BUSINESS_MODERATE',
   'INTRODUCTION_MANAGE',
@@ -64,10 +66,121 @@ export type StaffActivationDto = Readonly<{
   recoveryCodes: readonly string[];
 }>;
 
+export type ClubCardDto = Readonly<{
+  id: string;
+  cardNumber: string;
+  publicId: string;
+  tier: string;
+  status: 'ACTIVE' | 'REVOKED' | 'EXPIRED';
+  issuedAt: string;
+  expiresAt: string;
+}>;
+
+export type MemberApplicationDto = Readonly<{
+  id: string;
+  motivation: string | null;
+  referralSource: string | null;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+}>;
+
+export type MemberListItemDto = Readonly<{
+  id: string;
+  phone: string;
+  firstName: string;
+  lastName: string;
+  displayName: string | null;
+  company: string | null;
+  position: string | null;
+  city: string | null;
+  country: string | null;
+  preferredLocale: string;
+  createdAt: string;
+  updatedAt: string;
+  application: MemberApplicationDto | null;
+  activeCard: ClubCardDto | null;
+}>;
+
+export type MemberDetailDto = MemberListItemDto &
+  Readonly<{
+    supabaseUserId: string;
+    bio: string | null;
+  }>;
+
+/** Fields writable via admin PATCH /users/:id. Phone and supabaseUserId are excluded. */
+export type MemberUpdateInputDto = Readonly<{
+  firstName?: string;
+  lastName?: string;
+  displayName?: string | null;
+  company?: string | null;
+  position?: string | null;
+  bio?: string | null;
+  city?: string | null;
+  country?: string | null;
+  preferredLocale?: string;
+}>;
+
+export type MemberListResponseDto = Readonly<{
+  items: readonly MemberListItemDto[];
+  total: number;
+}>;
+
 export type StaffMfaChallengeDto = Readonly<{
   challengeToken: string;
   expiresAt: string;
 }>;
+
+export type PartnerTranslations = Record<'en' | 'ru' | 'uk', { name: string; description: string }>;
+
+export type SubscriptionStatus = 'NONE' | 'ACTIVE' | 'PAST_DUE' | 'CANCELED' | 'EXPIRED';
+
+export type PartnerDto = Readonly<{
+  id: string;
+  slug: string;
+  category: 'ADVISORY' | 'FINANCE' | 'LEGAL' | 'TECHNOLOGY';
+  country: string;
+  city: string | null;
+  phone: string | null;
+  discountPercent: number;
+  image: string;
+  translations: PartnerTranslations;
+  isActive: boolean;
+  sortOrder: number;
+  ownerId: string | null;
+  ownerName: string | null;
+  featuredTop: boolean;
+  featuredRecommended: boolean;
+  stripeCustomerId: string | null;
+  stripeSubscriptionId: string | null;
+  stripePriceId: string | null;
+  subscriptionStatus: SubscriptionStatus;
+  currentPeriodStart: string | null;
+  currentPeriodEnd: string | null;
+  cancelAtPeriodEnd: boolean;
+  createdAt: string;
+  updatedAt: string;
+}>;
+
+export type PartnerListResponseDto = Readonly<{ items: readonly PartnerDto[]; total: number }>;
+
+/** Fields writable via admin create/edit. Stripe fields are webhook-only. */
+export type PartnerInputDto = Pick<
+  PartnerDto,
+  | 'slug'
+  | 'category'
+  | 'country'
+  | 'city'
+  | 'phone'
+  | 'discountPercent'
+  | 'image'
+  | 'translations'
+  | 'isActive'
+  | 'sortOrder'
+  | 'ownerId'
+  | 'featuredTop'
+  | 'featuredRecommended'
+>;
 
 export type StaffSessionTokenDto = Readonly<{
   session: StaffSessionDto;

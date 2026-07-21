@@ -50,8 +50,8 @@ export default async function MembershipRoute({ params }: MembershipRouteProps) 
         status: member.membershipApplication.status as MembershipApplicationStatus,
         motivation: member.membershipApplication.motivation,
         referralSource: member.membershipApplication.referralSource,
-        submittedAt: member.membershipApplication.submittedAt,
-        reviewNote: member.membershipApplication.reviewNote,
+        submittedAt: (member.membershipApplication as any).submittedAt ?? new Date(),
+        reviewNote: (member.membershipApplication as any).reviewNote ?? null,
       }
     : null;
 

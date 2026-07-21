@@ -1,6 +1,7 @@
 import 'server-only';
 
 import type { ApiErrorCode, ApiResponse } from '@kclub/contracts';
+import { logError } from '@kclub/observability';
 import { NextResponse } from 'next/server';
 
 import { getDatabase } from './database';
@@ -63,5 +64,14 @@ export const failure = (
   status: number,
 ): NextResponse<ApiResponse<never>> =>
   NextResponse.json({ error: { code, message: code, requestId } }, { status });
+
+export const withErrorHandling = <T>(
+  requestId: string,
+  handler: () => Promise<NextResponse<ApiResponse<T>>>,
+): Promise<NextResponse<ApiResponse<T>>> =>
+  handler().catch((error) => {
+    logError(error, { scope: 'product-core.api', requestId });
+    return failure('INTERNAL_ERROR', requestId, 500);
+  });
 
 export const staffAuthService = () => createStaffAuthService(getDatabase());

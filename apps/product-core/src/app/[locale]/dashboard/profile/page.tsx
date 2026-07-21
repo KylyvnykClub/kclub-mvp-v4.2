@@ -29,7 +29,9 @@ export default async function ProfileRoute({ params }: ProfileRouteProps) {
   setRequestLocale(locale);
 
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (!user) {
     redirect(`/${locale}/auth/login`);
@@ -43,8 +45,17 @@ export default async function ProfileRoute({ params }: ProfileRouteProps) {
     redirect(`/${locale}/auth/login`);
   }
 
+  const themeT = await getTranslations({ locale, namespace: 'home.theme' });
+
   return (
     <ProfilePage
+      locale={locale}
+      themeLabels={{
+        label: themeT('label'),
+        system: themeT('system'),
+        light: themeT('light'),
+        dark: themeT('dark'),
+      }}
       member={{
         firstName: member.firstName,
         lastName: member.lastName,

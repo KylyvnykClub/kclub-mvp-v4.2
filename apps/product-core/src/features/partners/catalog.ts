@@ -1,18 +1,24 @@
-import type { PartnerCategory, PartnerCountry, PartnerProfile } from './data';
+import type { PartnerCategory } from './data';
 
 export const PARTNERS_PER_PAGE = 6;
 
+export type PartnerFilterable = Readonly<{
+  category: PartnerCategory;
+  country: string;
+  discountPercent: number;
+}>;
+
 export type PartnerFilters = Readonly<{
   category?: PartnerCategory;
-  country?: PartnerCountry;
+  country?: string;
   minimumDiscount?: number;
   page: number;
 }>;
 
-export const filterPartners = (
-  partners: ReadonlyArray<PartnerProfile>,
+export const filterPartners = <T extends PartnerFilterable>(
+  partners: ReadonlyArray<T>,
   filters: PartnerFilters,
-): ReadonlyArray<PartnerProfile> =>
+): ReadonlyArray<T> =>
   partners.filter(
     (partner) =>
       (!filters.category || partner.category === filters.category) &&
@@ -20,8 +26,8 @@ export const filterPartners = (
       (!filters.minimumDiscount || partner.discountPercent >= filters.minimumDiscount),
   );
 
-export const paginatePartners = (
-  partners: ReadonlyArray<PartnerProfile>,
+export const paginatePartners = <T extends PartnerFilterable>(
+  partners: ReadonlyArray<T>,
   page: number,
   perPage = PARTNERS_PER_PAGE,
 ) => {

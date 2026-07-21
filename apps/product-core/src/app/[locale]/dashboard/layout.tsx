@@ -22,7 +22,9 @@ export default async function DashboardLayout({ children, params }: DashboardLay
   setRequestLocale(locale);
 
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (!user) {
     redirect(`/${locale}/auth/login`);
@@ -30,6 +32,7 @@ export default async function DashboardLayout({ children, params }: DashboardLay
 
   const member = await prisma.member.findUnique({
     where: { supabaseUserId: user.id },
+    include: { membershipApplication: true },
   });
 
   if (!member) {
@@ -38,6 +41,7 @@ export default async function DashboardLayout({ children, params }: DashboardLay
 
   const memberName = member.displayName || `${member.firstName} ${member.lastName}`;
   const memberInitials = `${member.firstName[0]}${member.lastName[0]}`;
+  const showBusiness = member.membershipApplication?.status === 'APPROVED';
 
   return (
     <div className="kc-dashboard">
@@ -45,6 +49,7 @@ export default async function DashboardLayout({ children, params }: DashboardLay
         locale={locale}
         memberName={memberName}
         memberInitials={memberInitials}
+        showBusiness={showBusiness}
       />
       <main className="kc-dashboard-main">{children}</main>
     </div>
