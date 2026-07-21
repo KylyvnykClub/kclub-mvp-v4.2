@@ -1,4 +1,5 @@
 import type { PartnerDto, PartnerInputDto, PartnerListResponseDto } from '@kclub/contracts';
+import { logError } from '@kclub/observability';
 import { isValidCountryCode } from '../../../../../features/partners/countries';
 import { getDatabase } from '../../../../../server/database';
 import {
@@ -8,6 +9,7 @@ import {
   requestIdFor,
   staffAuthService,
   success,
+  withErrorHandling,
 } from '../../../../../server/staff-auth-http';
 
 const VALID_CATEGORIES = ['ADVISORY', 'FINANCE', 'LEGAL', 'TECHNOLOGY'] as const;
@@ -77,6 +79,7 @@ const OWNER_INCLUDE = {
 
 export const GET = async (request: Request): Promise<Response> => {
   const requestId = requestIdFor(request);
+  return withErrorHandling(requestId, async () => {
   const token = bearerToken(request);
   if (token === null) return failure('UNAUTHORIZED', requestId, 401);
   const session = await staffAuthService().getSession(token);
@@ -109,6 +112,7 @@ export const GET = async (request: Request): Promise<Response> => {
 
   const items = rows.map(toDto);
   return success<PartnerListResponseDto>({ items, total }, requestId);
+  });
 };
 
 export const POST = async (request: Request): Promise<Response> => {
@@ -193,6 +197,7 @@ export const POST = async (request: Request): Promise<Response> => {
     if (error instanceof Error && error.message.startsWith('FEATURED_LIMIT')) {
       return failure('CONFLICT', requestId, 409);
     }
-    return failure('INVALID_INPUT', requestId, 400);
+    logError(error, { scope: 'product-core.api.partners.create', requestId });
+    return failure('INTERNAL_ERROR', requestId, 500);
   }
 };

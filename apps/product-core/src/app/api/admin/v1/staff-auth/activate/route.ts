@@ -1,5 +1,6 @@
 import { staffActivateSchema } from '@kclub/validation';
 
+import { logError } from '@kclub/observability';
 import {
   enforceAuthRateLimit,
   failure,
@@ -18,8 +19,8 @@ export const POST = async (request: Request): Promise<Response> => {
   try {
     return success(await staffAuthService().activate(input, { requestId }), requestId, 201);
   } catch (error) {
-    return isInvalidCredentials(error)
-      ? failure('UNAUTHORIZED', requestId, 401)
-      : failure('INTERNAL_ERROR', requestId, 500);
+    if (isInvalidCredentials(error)) return failure('UNAUTHORIZED', requestId, 401);
+    logError(error, { scope: 'product-core.api.staff-auth.activate', requestId });
+    return failure('INTERNAL_ERROR', requestId, 500);
   }
 };

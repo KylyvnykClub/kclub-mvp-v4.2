@@ -5,6 +5,7 @@ import type {
   BaseRecord,
   DataProvider,
 } from '@refinedev/core';
+import { logError } from '@kclub/observability';
 import { STAFF_PERMISSIONS } from '@kclub/contracts';
 import type {
   StaffActivationDto,
@@ -120,7 +121,13 @@ const proxyFetch = async <T>(
     init.body = JSON.stringify(body);
   }
   const response = await fetch(`/api/proxy/${path}`, init);
-  if (!response.ok) throw new Error(`Failed ${method} /api/proxy/${path}`);
+  if (!response.ok) {
+    logError(new Error(`Failed ${method} /api/proxy/${path}`), {
+      scope: 'admin-app.data-provider.proxyFetch',
+      extra: { method, path, status: response.status },
+    });
+    throw new Error(`Failed ${method} /api/proxy/${path}`);
+  }
   const json = (await response.json()) as { data: T };
   return json.data;
 };
@@ -140,7 +147,13 @@ export const dataProvider: DataProvider = {
     if (searchFilter && 'value' in searchFilter && searchFilter.value)
       params.set('search', String(searchFilter.value));
     const response = await fetch(`/api/proxy/${path}?${params.toString()}`, { cache: 'no-store' });
-    if (!response.ok) throw new Error(`Failed to fetch ${resource}`);
+    if (!response.ok) {
+      logError(new Error(`Failed to fetch ${resource}`), {
+        scope: 'admin-app.data-provider.getList',
+        extra: { resource, status: response.status },
+      });
+      throw new Error(`Failed to fetch ${resource}`);
+    }
     const body = (await response.json()) as { data: { items: BaseRecord[]; total: number } };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return { data: body.data.items, total: body.data.total } as any;
@@ -151,7 +164,13 @@ export const dataProvider: DataProvider = {
     const response = await fetch(`/api/proxy/${path}/${encodeURIComponent(String(id))}`, {
       cache: 'no-store',
     });
-    if (!response.ok) throw new Error(`Failed to fetch ${resource}/${id}`);
+    if (!response.ok) {
+      logError(new Error(`Failed to fetch ${resource}/${id}`), {
+        scope: 'admin-app.data-provider.getOne',
+        extra: { resource, id, status: response.status },
+      });
+      throw new Error(`Failed to fetch ${resource}/${id}`);
+    }
     const body = (await response.json()) as { data: BaseRecord };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return { data: body.data } as any;

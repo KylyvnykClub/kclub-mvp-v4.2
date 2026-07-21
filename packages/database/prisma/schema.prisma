@@ -151,6 +151,12 @@ enum SubscriptionStatus {
   EXPIRED
 }
 
+enum ClubCardStatus {
+  ACTIVE
+  REVOKED
+  EXPIRED
+}
+
 model Partner {
   id                   String              @id @default(uuid()) @db.Uuid
   slug                 String              @unique
@@ -204,8 +210,27 @@ model Member {
 
   partners              Partner[]
   membershipApplication MembershipApplication?
+  clubCards             ClubCard[]
 
   @@map("members")
+}
+
+model ClubCard {
+  id         String         @id @default(uuid()) @db.Uuid
+  memberId   String         @map("member_id") @db.Uuid
+  cardNumber String         @unique @map("card_number")
+  publicId   String         @unique @map("public_id")
+  tier       String         @default("MEMBER")
+  status     ClubCardStatus @default(ACTIVE)
+  issuedAt   DateTime       @default(now()) @map("issued_at") @db.Timestamptz(6)
+  expiresAt  DateTime       @map("expires_at") @db.Timestamptz(6)
+  createdAt  DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime       @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  member Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  @@index([memberId, status])
+  @@map("club_cards")
 }
 
 model MembershipApplication {

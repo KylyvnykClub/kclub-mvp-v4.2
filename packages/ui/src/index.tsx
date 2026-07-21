@@ -1,3 +1,4 @@
+export { ErrorBoundary } from './ErrorBoundary';
 import type { ButtonHTMLAttributes, InputHTMLAttributes, ReactNode } from 'react';
 
 type ButtonProps = Readonly<

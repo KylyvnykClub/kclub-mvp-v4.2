@@ -15,6 +15,12 @@ const statusColor: Record<string, string> = {
   REJECTED: 'red',
 };
 
+const cardStatusColor: Record<string, string> = {
+  ACTIVE: 'green',
+  REVOKED: 'red',
+  EXPIRED: 'default',
+};
+
 export const MembersList = (): ReactNode => {
   const go = useGo();
   const { tableProps, setFilters, filters } = useTable<MemberListItemDto>({
@@ -46,7 +52,7 @@ export const MembersList = (): ReactNode => {
             onClick: () => go({ to: `/members/${record.id}`, type: 'push' }),
             style: { cursor: 'pointer' },
           })}
-          scroll={{ x: 900 }}
+          scroll={{ x: 1100 }}
         >
           <Table.Column<MemberListItemDto>
             title="Name"
@@ -61,6 +67,23 @@ export const MembersList = (): ReactNode => {
             title="Location"
             render={(_, record) =>
               [record.city, record.country].filter(Boolean).join(', ') || '—'
+            }
+          />
+          <Table.Column<MemberListItemDto>
+            title="Club Card"
+            render={(_, record) =>
+              record.activeCard ? (
+                <Space direction="vertical" size={2}>
+                  <span style={{ fontFamily: 'monospace', fontSize: 12 }}>
+                    {record.activeCard.cardNumber}
+                  </span>
+                  <Tag color={cardStatusColor[record.activeCard.status] ?? 'default'}>
+                    {record.activeCard.status}
+                  </Tag>
+                </Space>
+              ) : (
+                <Tag>No card</Tag>
+              )
             }
           />
           <Table.Column<MemberListItemDto>

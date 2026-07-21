@@ -1,4 +1,5 @@
 import type { PartnerDto, PartnerInputDto } from '@kclub/contracts';
+import { logError } from '@kclub/observability';
 import { isValidCountryCode } from '../../../../../../features/partners/countries';
 import { getDatabase } from '../../../../../../server/database';
 import {
@@ -8,6 +9,7 @@ import {
   requestIdFor,
   staffAuthService,
   success,
+  withErrorHandling,
 } from '../../../../../../server/staff-auth-http';
 
 const VALID_CATEGORIES = ['ADVISORY', 'FINANCE', 'LEGAL', 'TECHNOLOGY'] as const;
@@ -78,6 +80,7 @@ type RouteContext = Readonly<{ params: Promise<{ id: string }> }>;
 
 export const GET = async (request: Request, context: RouteContext): Promise<Response> => {
   const requestId = requestIdFor(request);
+  return withErrorHandling(requestId, async () => {
   const token = bearerToken(request);
   if (token === null) return failure('UNAUTHORIZED', requestId, 401);
   const session = await staffAuthService().getSession(token);
@@ -89,6 +92,7 @@ export const GET = async (request: Request, context: RouteContext): Promise<Resp
   if (row === null) return failure('NOT_FOUND', requestId, 404);
 
   return success(toDto(row), requestId);
+  });
 };
 
 export const PATCH = async (request: Request, context: RouteContext): Promise<Response> => {
@@ -172,7 +176,8 @@ export const PATCH = async (request: Request, context: RouteContext): Promise<Re
     if (error instanceof Error && error.message.startsWith('FEATURED_LIMIT')) {
       return failure('CONFLICT', requestId, 409);
     }
-    return failure('INVALID_INPUT', requestId, 400);
+    logError(error, { scope: 'product-core.api.partners.update', requestId });
+    return failure('INTERNAL_ERROR', requestId, 500);
   }
 };
 
@@ -191,7 +196,8 @@ export const DELETE = async (request: Request, context: RouteContext): Promise<R
   try {
     await db.partner.delete({ where: { id } });
     return success(null, requestId);
-  } catch {
+  } catch (error) {
+    logError(error, { scope: 'product-core.api.partners.delete', requestId });
     return failure('INTERNAL_ERROR', requestId, 500);
   }
 };

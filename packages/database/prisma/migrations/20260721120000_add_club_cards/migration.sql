@@ -1,0 +1,2 @@
+-- Intentionally left empty after rollback of the first club-card attempt.
+-- The effective club-card migration is 20260721123000_add_member_club_cards.

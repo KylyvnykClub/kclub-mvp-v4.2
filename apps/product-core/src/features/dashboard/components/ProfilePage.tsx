@@ -3,9 +3,17 @@
 import { useTranslations } from 'next-intl';
 import { useActionState } from 'react';
 
-import { updateProfile } from '../../auth/actions';
+import { ThemeToggle } from '../../theme/ThemeToggle';
+import { changePassword, signOut, updateProfile } from '../../auth/actions';
 
 type ProfilePageProps = {
+  locale: string;
+  themeLabels: {
+    label: string;
+    system: string;
+    light: string;
+    dark: string;
+  };
   member: {
     firstName: string;
     lastName: string;
@@ -19,9 +27,15 @@ type ProfilePageProps = {
   };
 };
 
-export function ProfilePage({ member }: ProfilePageProps) {
+export function ProfilePage({ locale, member, themeLabels }: ProfilePageProps) {
   const t = useTranslations('dashboard.profile');
+  const settingsT = useTranslations('dashboard.settings');
   const [state, formAction, isPending] = useActionState(updateProfile, null);
+  const [pwState, pwAction, pwPending] = useActionState(changePassword, null);
+
+  const handleSignOut = async () => {
+    await signOut(locale);
+  };
 
   return (
     <div className="kc-dashboard-page">
@@ -38,18 +52,16 @@ export function ProfilePage({ member }: ProfilePageProps) {
 
       <form action={formAction} className="kc-form">
         <div className="kc-field">
-          <label className="kc-label" htmlFor="phone">{t('phone')}</label>
-          <input
-            id="phone"
-            type="text"
-            value={member.phone}
-            disabled
-            className="kc-input"
-          />
+          <label className="kc-label" htmlFor="phone">
+            {t('phone')}
+          </label>
+          <input id="phone" type="text" value={member.phone} disabled className="kc-input" />
         </div>
 
         <div className="kc-field">
-          <label className="kc-label" htmlFor="firstName">{t('firstName')}</label>
+          <label className="kc-label" htmlFor="firstName">
+            {t('firstName')}
+          </label>
           <input
             id="firstName"
             name="firstName"
@@ -61,7 +73,9 @@ export function ProfilePage({ member }: ProfilePageProps) {
         </div>
 
         <div className="kc-field">
-          <label className="kc-label" htmlFor="lastName">{t('lastName')}</label>
+          <label className="kc-label" htmlFor="lastName">
+            {t('lastName')}
+          </label>
           <input
             id="lastName"
             name="lastName"
@@ -73,7 +87,9 @@ export function ProfilePage({ member }: ProfilePageProps) {
         </div>
 
         <div className="kc-field">
-          <label className="kc-label" htmlFor="displayName">{t('displayName')}</label>
+          <label className="kc-label" htmlFor="displayName">
+            {t('displayName')}
+          </label>
           <input
             id="displayName"
             name="displayName"
@@ -84,7 +100,9 @@ export function ProfilePage({ member }: ProfilePageProps) {
         </div>
 
         <div className="kc-field">
-          <label className="kc-label" htmlFor="company">{t('company')}</label>
+          <label className="kc-label" htmlFor="company">
+            {t('company')}
+          </label>
           <input
             id="company"
             name="company"
@@ -95,7 +113,9 @@ export function ProfilePage({ member }: ProfilePageProps) {
         </div>
 
         <div className="kc-field">
-          <label className="kc-label" htmlFor="position">{t('position')}</label>
+          <label className="kc-label" htmlFor="position">
+            {t('position')}
+          </label>
           <input
             id="position"
             name="position"
@@ -106,7 +126,9 @@ export function ProfilePage({ member }: ProfilePageProps) {
         </div>
 
         <div className="kc-field">
-          <label className="kc-label" htmlFor="bio">{t('bio')}</label>
+          <label className="kc-label" htmlFor="bio">
+            {t('bio')}
+          </label>
           <textarea
             id="bio"
             name="bio"
@@ -116,7 +138,9 @@ export function ProfilePage({ member }: ProfilePageProps) {
         </div>
 
         <div className="kc-field">
-          <label className="kc-label" htmlFor="city">{t('city')}</label>
+          <label className="kc-label" htmlFor="city">
+            {t('city')}
+          </label>
           <input
             id="city"
             name="city"
@@ -127,7 +151,9 @@ export function ProfilePage({ member }: ProfilePageProps) {
         </div>
 
         <div className="kc-field">
-          <label className="kc-label" htmlFor="country">{t('country')}</label>
+          <label className="kc-label" htmlFor="country">
+            {t('country')}
+          </label>
           <input
             id="country"
             name="country"
@@ -141,6 +167,99 @@ export function ProfilePage({ member }: ProfilePageProps) {
           {isPending ? t('saving') : t('save')}
         </button>
       </form>
+
+      <section className="kc-settings-section">
+        <h2 className="kc-settings-section-title">{settingsT('password.title')}</h2>
+        <p className="kc-settings-section-desc">{settingsT('password.desc')}</p>
+
+        {pwState?.success && (
+          <div className="kc-stat-card" data-tone="success">
+            <span className="kc-stat-card-value">{settingsT('password.saved')}</span>
+          </div>
+        )}
+
+        <form action={pwAction} className="kc-form">
+          <div className="kc-field">
+            <label className="kc-label" htmlFor="currentPassword">
+              {settingsT('password.current')}
+            </label>
+            <input
+              id="currentPassword"
+              name="currentPassword"
+              type="password"
+              required
+              autoComplete="current-password"
+              className="kc-input kc-focus-ring"
+            />
+          </div>
+          <div className="kc-field">
+            <label className="kc-label" htmlFor="newPassword">
+              {settingsT('password.new')}
+            </label>
+            <input
+              id="newPassword"
+              name="newPassword"
+              type="password"
+              required
+              minLength={8}
+              autoComplete="new-password"
+              className="kc-input kc-focus-ring"
+            />
+          </div>
+          <div className="kc-field">
+            <label className="kc-label" htmlFor="confirmPassword">
+              {settingsT('password.confirm')}
+            </label>
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              required
+              autoComplete="new-password"
+              className="kc-input kc-focus-ring"
+            />
+          </div>
+          <button type="submit" className="kc-button kc-focus-ring" disabled={pwPending}>
+            {pwPending ? settingsT('password.saving') : settingsT('password.submit')}
+          </button>
+        </form>
+      </section>
+
+      <section className="kc-settings-section">
+        <h2 className="kc-settings-section-title">{settingsT('language.title')}</h2>
+        <p className="kc-settings-section-desc">{settingsT('language.desc')}</p>
+        <div className="kc-cluster">
+          {(['en', 'ru', 'uk'] as const).map((lang) => (
+            <a
+              key={lang}
+              href={`/${lang}/dashboard/profile`}
+              className="kc-button kc-focus-ring"
+              data-tone={lang === locale ? undefined : 'neutral'}
+            >
+              {settingsT(`language.${lang}` as Parameters<typeof settingsT>[0])}
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="kc-settings-section">
+        <h2 className="kc-settings-section-title">{settingsT('theme.title')}</h2>
+        <p className="kc-settings-section-desc">{settingsT('theme.desc')}</p>
+        <ThemeToggle
+          label={themeLabels.label}
+          systemLabel={themeLabels.system}
+          lightLabel={themeLabels.light}
+          darkLabel={themeLabels.dark}
+        />
+      </section>
+
+      <section className="kc-settings-section">
+        <h2 className="kc-settings-section-title">{settingsT('signOut.title')}</h2>
+        <p className="kc-settings-section-desc">{settingsT('signOut.desc')}</p>
+        <button className="kc-button kc-focus-ring" data-tone="neutral" onClick={handleSignOut}>
+          {settingsT('signOut.button')}
+        </button>
+      </section>
     </div>
   );
 }

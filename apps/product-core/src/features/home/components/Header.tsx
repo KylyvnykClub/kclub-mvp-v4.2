@@ -4,6 +4,7 @@ import { HeaderScrollSensor } from '../../motion/HeaderScrollSensor';
 import { Link } from '../../../i18n/navigation';
 import { MobileNav } from './MobileNav';
 import { PromoBar } from './PromoBar';
+import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from '../../theme/ThemeToggle';
 import { createClient } from '../../../lib/supabase/server';
 
@@ -43,6 +44,7 @@ export async function Header() {
             ))}
           </nav>
           <div className="kc-header-actions">
+            <LanguageSwitcher />
             <ThemeToggle
               label={t('theme.label')}
               systemLabel={t('theme.system')}

@@ -343,7 +343,18 @@
         "system": "Use system theme",
         "light": "Use light theme",
         "dark": "Use dark theme"
-      }
+      },
+      "legal_policies": "Legal & Policies",
+      "legal_rules": "Rules & Contact",
+      "terms-of-use": "Terms of Use",
+      "privacy-policy": "Privacy Policy",
+      "cookie-policy": "Cookie Policy",
+      "refund-policy": "Refund Policy",
+      "disclaimer": "Disclaimer",
+      "club-rules": "Club Rules",
+      "partner-rules": "Partner Rules",
+      "business-introduction-rules": "Business Introduction Rules",
+      "contact-us": "Contact Us"
     }
   },
   "partners": {
@@ -682,5 +693,13 @@
         "text": "We pay special attention to protecting members' personal data."
       }
     }
+  },
+  "errors": {
+    "title": "Error",
+    "generic": "Something went wrong. Please try again.",
+    "retry": "Try Again",
+    "notFoundTitle": "Page Not Found",
+    "notFoundMessage": "The page you are looking for does not exist.",
+    "home": "Go Home"
   }
 }

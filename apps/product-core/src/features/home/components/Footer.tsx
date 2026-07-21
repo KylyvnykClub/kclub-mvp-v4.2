@@ -2,7 +2,6 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '../../../i18n/navigation';
 import { Reveal } from '../../motion/Reveal';
 import { ThemeToggle } from '../../theme/ThemeToggle';
-import { LanguageSwitcher } from './LanguageSwitcher';
 
 export async function Footer() {
   const t = await getTranslations('home.footer');
@@ -36,8 +35,59 @@ export async function Footer() {
               </ul>
             </div>
             <div>
-              <h2 className="kc-footer-title">{t('languages')}</h2>
-              <LanguageSwitcher />
+              <h2 className="kc-footer-title">{t('legal_policies')}</h2>
+              <ul className="kc-footer-list">
+                <li>
+                  <Link className="kc-footer-link" href="/legal/terms-of-use">
+                    {t('terms-of-use')}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="kc-footer-link" href="/legal/privacy-policy">
+                    {t('privacy-policy')}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="kc-footer-link" href="/legal/cookie-policy">
+                    {t('cookie-policy')}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="kc-footer-link" href="/legal/refund-policy">
+                    {t('refund-policy')}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="kc-footer-link" href="/legal/disclaimer">
+                    {t('disclaimer')}
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2 className="kc-footer-title">{t('legal_rules')}</h2>
+              <ul className="kc-footer-list">
+                <li>
+                  <Link className="kc-footer-link" href="/legal/club-rules">
+                    {t('club-rules')}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="kc-footer-link" href="/legal/partner-rules">
+                    {t('partner-rules')}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="kc-footer-link" href="/legal/business-introduction-rules">
+                    {t('business-introduction-rules')}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="kc-footer-link" href="/legal/contact-us">
+                    {t('contact-us')}
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
           <div className="kc-footer-bottom">

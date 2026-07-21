@@ -16,6 +16,7 @@ export const ADMIN_RESOURCES: (ResourceProps & { meta: AdminResourceMeta })[] = 
     name: 'members',
     list: '/members',
     show: '/members/:id',
+    edit: '/members/:id',
     meta: { label: 'Members', permission: 'MEMBER_VIEW' },
   },
   {

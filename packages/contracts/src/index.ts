@@ -66,6 +66,16 @@ export type StaffActivationDto = Readonly<{
   recoveryCodes: readonly string[];
 }>;
 
+export type ClubCardDto = Readonly<{
+  id: string;
+  cardNumber: string;
+  publicId: string;
+  tier: string;
+  status: 'ACTIVE' | 'REVOKED' | 'EXPIRED';
+  issuedAt: string;
+  expiresAt: string;
+}>;
+
 export type MemberApplicationDto = Readonly<{
   id: string;
   motivation: string | null;
@@ -89,6 +99,7 @@ export type MemberListItemDto = Readonly<{
   createdAt: string;
   updatedAt: string;
   application: MemberApplicationDto | null;
+  activeCard: ClubCardDto | null;
 }>;
 
 export type MemberDetailDto = MemberListItemDto &
@@ -96,6 +107,19 @@ export type MemberDetailDto = MemberListItemDto &
     supabaseUserId: string;
     bio: string | null;
   }>;
+
+/** Fields writable via admin PATCH /users/:id. Phone and supabaseUserId are excluded. */
+export type MemberUpdateInputDto = Readonly<{
+  firstName?: string;
+  lastName?: string;
+  displayName?: string | null;
+  company?: string | null;
+  position?: string | null;
+  bio?: string | null;
+  city?: string | null;
+  country?: string | null;
+  preferredLocale?: string;
+}>;
 
 export type MemberListResponseDto = Readonly<{
   items: readonly MemberListItemDto[];

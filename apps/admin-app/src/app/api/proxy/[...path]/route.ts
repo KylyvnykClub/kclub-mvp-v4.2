@@ -1,3 +1,4 @@
+import { logError } from '@kclub/observability';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { callProductCore, SESSION_COOKIE } from '../../../../server/admin-api';
@@ -19,6 +20,7 @@ const allowedResources = new Set([
 type RouteContext = Readonly<{ params: Promise<{ path: string[] }> }>;
 
 const proxy = async (request: Request, context: RouteContext): Promise<Response> => {
+  try {
   const token = (await cookies()).get(SESSION_COOKIE)?.value;
   if (token === undefined)
     return NextResponse.json(
@@ -51,6 +53,13 @@ const proxy = async (request: Request, context: RouteContext): Promise<Response>
     init,
   );
   return NextResponse.json(result.body, { status: result.status });
+  } catch (error) {
+    logError(error, { scope: 'admin-app.proxy' });
+    return NextResponse.json(
+      { error: { code: 'INTERNAL_ERROR', message: 'INTERNAL_ERROR', requestId: crypto.randomUUID() } },
+      { status: 500 },
+    );
+  }
 };
 
 export const GET = proxy;
