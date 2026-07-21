@@ -1,13 +1,15 @@
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 
 import { Reveal } from '../../motion/Reveal';
-import { PARTNERS } from '../../partners/data';
+import { listPartners } from '../../partners/repository';
 import { PartnerCard } from '../../partners/PartnerCard';
 import { SectionHeading } from './SectionHeading';
 
 export async function TopPartners() {
+  const locale = await getLocale();
   const t = await getTranslations('home.topPartners');
   const partnerT = await getTranslations('partners');
+  const partners = await listPartners(locale);
 
   return (
     <section className="kc-section" data-section="top-partners" data-tone="muted">
@@ -16,15 +18,15 @@ export async function TopPartners() {
           <SectionHeading eyebrow={t('eyebrow')} title={t('title')} lead={t('lead')} />
         </Reveal>
         <div className="kc-partners-grid">
-          {PARTNERS.slice(3, 6).map((partner, index) => {
+          {partners.slice(3, 6).map((partner, index) => {
             const delay = (index + 1) as 1 | 2 | 3;
 
             return (
-              <Reveal key={partner.key} delay={delay}>
+              <Reveal key={partner.slug} delay={delay}>
                 <PartnerCard
                   image={partner.image}
-                  name={partnerT(`items.${partner.key}.name`)}
-                  description={partnerT(`items.${partner.key}.description`)}
+                  name={partner.name}
+                  description={partner.description}
                   category={partnerT(`categories.${partner.category}`)}
                   country={partner.country}
                   countryLabel={partnerT(`countries.${partner.country}`)}

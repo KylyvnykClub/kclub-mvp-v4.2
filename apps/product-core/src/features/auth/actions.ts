@@ -2,6 +2,7 @@
 
 import { redirect } from 'next/navigation';
 
+import { createAdminClient } from '../../lib/supabase/admin';
 import { prisma } from '../../lib/supabase/db';
 import { createClient } from '../../lib/supabase/server';
 
@@ -46,15 +47,34 @@ export async function signUp(prevState: { error: string } | null, formData: Form
   }
 
   if (data.user) {
-    await prisma.member.create({
-      data: {
-        supabaseUserId: data.user.id,
-        phone,
-        firstName: firstName.trim(),
-        lastName: lastName.trim(),
-        preferredLocale: locale,
-      },
-    });
+    try {
+      await prisma.member.create({
+        data: {
+          supabaseUserId: data.user.id,
+          phone,
+          firstName: firstName.trim(),
+          lastName: lastName.trim(),
+          preferredLocale: locale,
+        },
+      });
+    } catch (memberError) {
+      console.error('[signUp] failed to create member row for auth user', data.user.id, memberError);
+
+      const adminClient = createAdminClient();
+      if (adminClient) {
+        const { error: deleteError } = await adminClient.auth.admin.deleteUser(data.user.id);
+        if (deleteError) {
+          console.error('[signUp] failed to roll back orphaned auth user', data.user.id, deleteError);
+        }
+      } else {
+        console.error(
+          '[signUp] SUPABASE_SERVICE_ROLE_KEY is not set — could not roll back orphaned auth user',
+          data.user.id,
+        );
+      }
+
+      return { error: 'auth.errors.generic' };
+    }
   }
 
   redirect(`/${locale}/dashboard`);

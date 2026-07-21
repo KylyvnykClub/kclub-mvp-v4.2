@@ -1,37 +1,28 @@
 import { ArrowLeft, BadgePercent, BriefcaseBusiness, MapPin } from 'lucide-react';
-import Image, { type StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
-import switzerlandFlag from '../../assets/flags.svg/ch.svg';
-import germanyFlag from '../../assets/flags.svg/de.svg';
-import polandFlag from '../../assets/flags.svg/pl.svg';
-import ukraineFlag from '../../assets/flags.svg/ua.svg';
 import { Link } from '../../i18n/navigation';
-import type { PartnerCountry, PartnerProfile } from './data';
+import { getCountryFlagUrl } from './data';
+import type { PartnerPublic } from './repository';
 
 const DEFAULT_HERO =
   'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&auto=format&fit=crop&q=85';
 
-const PARTNER_COUNTRY_FLAGS = {
-  germany: germanyFlag,
-  poland: polandFlag,
-  switzerland: switzerlandFlag,
-  ukraine: ukraineFlag,
-} satisfies Record<PartnerCountry, StaticImageData>;
-
 type PartnerDetailPageProps = Readonly<{
-  partner: PartnerProfile;
+  partner: PartnerPublic;
 }>;
 
 export async function PartnerDetailPage({ partner }: PartnerDetailPageProps) {
   const t = await getTranslations('partners');
   const dt = await getTranslations('partners.detail');
 
-  const name = t(`items.${partner.key}.name`);
-  const description = t(`items.${partner.key}.description`);
   const category = t(`categories.${partner.category}`);
-  const countryLabel = t(`countries.${partner.country}`);
-  const countryFlag = PARTNER_COUNTRY_FLAGS[partner.country];
+  // If the translation key exists, we can use it, but since country is now a free string,
+  // we might want to fallback to the raw code if translation is missing. 
+  // For MVP, we can keep the translation lookup as it might be defined.
+  // We'll uppercase the first letter or keep it as is if it fails.
+  const countryLabel = partner.countryName ?? t(`countries.${partner.country}`);
 
   return (
     <main className="kc-partner-detail">
@@ -49,7 +40,7 @@ export async function PartnerDetailPage({ partner }: PartnerDetailPageProps) {
                   {t('breadcrumbs.partners')}
                 </Link>
               </li>
-              <li aria-current="page">{name}</li>
+              <li aria-current="page">{partner.name}</li>
             </ol>
           </nav>
 
@@ -61,13 +52,13 @@ export async function PartnerDetailPage({ partner }: PartnerDetailPageProps) {
                   {category}
                 </span>
                 <span>
-                  <Image src={countryFlag} alt="" className="kc-partner-flag" aria-hidden="true" />
+                  <img src={getCountryFlagUrl(partner.country)} alt="" className="kc-partner-flag" aria-hidden="true" width={20} height={15} />
                   {countryLabel}
                 </span>
               </div>
 
-              <h1 className="kc-partner-detail-title">{name}</h1>
-              <p className="kc-partner-detail-lead">{description}</p>
+              <h1 className="kc-partner-detail-title">{partner.name}</h1>
+              <p className="kc-partner-detail-lead">{partner.description}</p>
 
               <div className="kc-partner-detail-hero">
                 <Image
@@ -81,10 +72,10 @@ export async function PartnerDetailPage({ partner }: PartnerDetailPageProps) {
 
               <div className="kc-partner-detail-body">
                 <h2>{dt('about')}</h2>
-                <p>{dt('aboutText', { name })}</p>
+                <p>{dt('aboutText', { name: partner.name })}</p>
 
                 <h2>{dt('memberBenefit')}</h2>
-                <p>{dt('memberBenefitText', { name, discount: partner.discountPercent })}</p>
+                <p>{dt('memberBenefitText', { name: partner.name, discount: partner.discountPercent })}</p>
 
                 <h2>{dt('howItWorks')}</h2>
                 <p>{dt('howItWorksText')}</p>
@@ -99,7 +90,7 @@ export async function PartnerDetailPage({ partner }: PartnerDetailPageProps) {
             <aside className="kc-partner-detail-sidebar">
               <div className="kc-partner-detail-card">
                 <p className="kc-eyebrow">{dt('companyInfo')}</p>
-                <h2 className="kc-partner-detail-card-title">{name}</h2>
+                <h2 className="kc-partner-detail-card-title">{partner.name}</h2>
 
                 <ul className="kc-partner-detail-facts">
                   <li>

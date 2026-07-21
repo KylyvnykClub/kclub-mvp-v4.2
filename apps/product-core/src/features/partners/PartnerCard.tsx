@@ -1,26 +1,15 @@
 import { ArrowRight, BadgePercent, BriefcaseBusiness } from 'lucide-react';
-import Image, { type StaticImageData } from 'next/image';
+import Image from 'next/image';
 
-import switzerlandFlag from '../../assets/flags.svg/ch.svg';
-import germanyFlag from '../../assets/flags.svg/de.svg';
-import polandFlag from '../../assets/flags.svg/pl.svg';
-import ukraineFlag from '../../assets/flags.svg/ua.svg';
 import { Link } from '../../i18n/navigation';
-import type { PartnerCountry } from './data';
-
-const PARTNER_COUNTRY_FLAGS = {
-  germany: germanyFlag,
-  poland: polandFlag,
-  switzerland: switzerlandFlag,
-  ukraine: ukraineFlag,
-} satisfies Record<PartnerCountry, StaticImageData>;
+import { getCountryFlagUrl } from './data';
 
 type PartnerCardProps = Readonly<{
   image: string;
   name: string;
   description: string;
   category: string;
-  country: PartnerCountry;
+  country: string;
   countryLabel: string;
   discountText: string;
   detailsLabel: string;
@@ -38,8 +27,6 @@ export function PartnerCard({
   detailsLabel,
   href,
 }: PartnerCardProps) {
-  const countryFlag = PARTNER_COUNTRY_FLAGS[country];
-
   return (
     <article className="kc-partner-card">
       <div className="kc-partner-media">
@@ -61,7 +48,7 @@ export function PartnerCard({
             {category}
           </span>
           <span>
-            <Image src={countryFlag} alt="" className="kc-partner-flag" aria-hidden="true" />
+            <img src={getCountryFlagUrl(country)} alt="" className="kc-partner-flag" aria-hidden="true" width={20} height={15} />
             {countryLabel}
           </span>
         </div>

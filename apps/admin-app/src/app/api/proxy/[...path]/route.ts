@@ -10,6 +10,7 @@ const allowedResources = new Set([
   'cities',
   'countries',
   'introductions',
+  'partners',
   'staff',
   'stripe-prices',
   'subscriptions',
@@ -30,12 +31,19 @@ const proxy = async (request: Request, context: RouteContext): Promise<Response>
       { error: { code: 'NOT_FOUND', message: 'NOT_FOUND', requestId: crypto.randomUUID() } },
       { status: 404 },
     );
-  const body =
-    request.method === 'GET' || request.method === 'HEAD' ? undefined : await request.text();
+  const isBodyless = request.method === 'GET' || request.method === 'HEAD';
+  // Read as bytes (not .text()) so binary bodies like multipart file uploads
+  // aren't corrupted by a UTF-8 decode round-trip, and forward the original
+  // Content-Type (with its multipart boundary) instead of dropping it.
+  const body = isBodyless ? undefined : await request.arrayBuffer();
+  const contentType = request.headers.get('content-type');
   const url = new URL(request.url);
   const init: RequestInit = {
     method: request.method,
-    headers: { authorization: `Bearer ${token}` },
+    headers: {
+      authorization: `Bearer ${token}`,
+      ...(contentType !== null ? { 'content-type': contentType } : {}),
+    },
   };
   if (body !== undefined) init.body = body;
   const result = await callProductCore(

@@ -3,8 +3,9 @@ import { getTranslations } from 'next-intl/server';
 
 import { Link } from '../../i18n/navigation';
 import { filterPartners, paginatePartners, type PartnerFilters } from './catalog';
-import { PARTNER_CATEGORIES, PARTNER_COUNTRIES, PARTNERS } from './data';
+import { PARTNER_CATEGORIES } from './data';
 import { PartnerCard } from './PartnerCard';
+import type { PartnerPublic } from './repository';
 
 const buildCatalogHref = (filters: PartnerFilters, page: number) => {
   const params = new URLSearchParams();
@@ -19,13 +20,17 @@ const buildCatalogHref = (filters: PartnerFilters, page: number) => {
 };
 
 type PartnersCatalogPageProps = Readonly<{
+  partners: readonly PartnerPublic[];
+  locale: string;
   filters: PartnerFilters;
 }>;
 
-export async function PartnersCatalogPage({ filters }: PartnersCatalogPageProps) {
+export async function PartnersCatalogPage({ partners, locale, filters }: PartnersCatalogPageProps) {
   const t = await getTranslations('partners');
-  const filtered = filterPartners(PARTNERS, filters);
+  const filtered = filterPartners(partners, filters);
   const pagination = paginatePartners(filtered, filters.page);
+
+  const uniqueCountries = Array.from(new Set(partners.map((p) => p.country))).sort();
 
   return (
     <main className="kc-partners-page">
@@ -71,7 +76,7 @@ export async function PartnersCatalogPage({ filters }: PartnersCatalogPageProps)
                 <span className="kc-label">{t('filters.country')}</span>
                 <select className="kc-input" defaultValue={filters.country ?? ''} name="country">
                   <option value="">{t('filters.allCountries')}</option>
-                  {PARTNER_COUNTRIES.map((country) => (
+                  {uniqueCountries.map((country) => (
                     <option key={country} value={country}>
                       {t(`countries.${country}`)}
                     </option>
@@ -109,10 +114,10 @@ export async function PartnersCatalogPage({ filters }: PartnersCatalogPageProps)
               <div className="kc-partners-directory-grid">
                 {pagination.items.map((partner) => (
                   <PartnerCard
-                    key={partner.key}
+                    key={partner.slug}
                     image={partner.image}
-                    name={t(`items.${partner.key}.name`)}
-                    description={t(`items.${partner.key}.description`)}
+                    name={partner.name}
+                    description={partner.description}
                     category={t(`categories.${partner.category}`)}
                     country={partner.country}
                     countryLabel={t(`countries.${partner.country}`)}

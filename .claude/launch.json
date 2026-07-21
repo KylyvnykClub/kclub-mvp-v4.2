@@ -12,7 +12,9 @@
       "name": "admin-app",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@kclub/admin-app", "dev"],
-      "port": 3001
+      "port": 3001,
+      "autoPort": true
     }
-  ]
+  ],
+  "autoVerify": false
 }

@@ -102,10 +102,27 @@ export const accessControlProvider: AccessControlProvider = {
 
 const RESOURCE_TO_PATH: Record<string, string> = {
   members: 'users',
+  partners: 'partners',
 };
 
 const unavailable = async (): Promise<never> => {
   throw new Error('No CRUD resources are enabled for this resource.');
+};
+
+const proxyFetch = async <T>(
+  method: string,
+  path: string,
+  body?: unknown,
+): Promise<T> => {
+  const init: RequestInit = { method };
+  if (body !== undefined) {
+    init.headers = { 'content-type': 'application/json' };
+    init.body = JSON.stringify(body);
+  }
+  const response = await fetch(`/api/proxy/${path}`, init);
+  if (!response.ok) throw new Error(`Failed ${method} /api/proxy/${path}`);
+  const json = (await response.json()) as { data: T };
+  return json.data;
 };
 
 export const dataProvider: DataProvider = {
@@ -122,7 +139,7 @@ export const dataProvider: DataProvider = {
     );
     if (searchFilter && 'value' in searchFilter && searchFilter.value)
       params.set('search', String(searchFilter.value));
-    const response = await fetch(`/api/proxy/${path}?${params.toString()}`);
+    const response = await fetch(`/api/proxy/${path}?${params.toString()}`, { cache: 'no-store' });
     if (!response.ok) throw new Error(`Failed to fetch ${resource}`);
     const body = (await response.json()) as { data: { items: BaseRecord[]; total: number } };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -131,14 +148,33 @@ export const dataProvider: DataProvider = {
   getOne: async ({ resource, id }) => {
     const path = RESOURCE_TO_PATH[resource];
     if (path === undefined) return unavailable();
-    const response = await fetch(`/api/proxy/${path}/${encodeURIComponent(String(id))}`);
+    const response = await fetch(`/api/proxy/${path}/${encodeURIComponent(String(id))}`, {
+      cache: 'no-store',
+    });
     if (!response.ok) throw new Error(`Failed to fetch ${resource}/${id}`);
     const body = (await response.json()) as { data: BaseRecord };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return { data: body.data } as any;
   },
-  create: unavailable,
-  update: unavailable,
-  deleteOne: unavailable,
+  create: async ({ resource, variables }) => {
+    const path = RESOURCE_TO_PATH[resource];
+    if (path === undefined) return unavailable();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const data = await proxyFetch<any>('POST', path, variables);
+    return { data };
+  },
+  update: async ({ resource, id, variables }) => {
+    const path = RESOURCE_TO_PATH[resource];
+    if (path === undefined) return unavailable();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const data = await proxyFetch<any>('PATCH', `${path}/${encodeURIComponent(String(id))}`, variables);
+    return { data };
+  },
+  deleteOne: async ({ resource, id }) => {
+    const path = RESOURCE_TO_PATH[resource];
+    if (path === undefined) return unavailable();
+    const data = await proxyFetch<BaseRecord>('DELETE', `${path}/${encodeURIComponent(String(id))}`);
+    return { data } as any;
+  },
   custom: unavailable,
 };

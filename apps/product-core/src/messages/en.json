@@ -405,48 +405,13 @@
       "technology": "Technology"
     },
     "countries": {
-      "germany": "Germany",
-      "switzerland": "Switzerland",
-      "poland": "Poland",
-      "ukraine": "Ukraine"
-    },
-    "items": {
-      "northHarbor": {
-        "name": "North Harbor Advisors",
-        "description": "Strategic guidance for owners navigating growth, partnerships and complex long-term decisions."
-      },
-      "meridian": {
-        "name": "Meridian Family Office",
-        "description": "Private-market perspective and considered financial support for founders and family enterprises."
-      },
-      "loden": {
-        "name": "Loden Legal",
-        "description": "Commercial legal expertise for cross-border operations, transactions and responsible expansion."
-      },
-      "vectorLabs": {
-        "name": "Vector Labs",
-        "description": "Digital products and data systems for companies modernizing complex operations."
-      },
-      "steinWorks": {
-        "name": "Stein Works",
-        "description": "Operational advisory for leadership teams moving from ambition to disciplined execution."
-      },
-      "vistulaCapital": {
-        "name": "Vistula Capital",
-        "description": "Flexible growth capital and practical financial expertise for established businesses."
-      },
-      "dniproDigital": {
-        "name": "Dnipro Digital",
-        "description": "Engineering and transformation support for scalable digital services and platforms."
-      },
-      "rheinLegal": {
-        "name": "Rhein Legal",
-        "description": "Clear commercial counsel for governance, contracts and international market entry."
-      },
-      "alpineStrategy": {
-        "name": "Alpine Strategy",
-        "description": "Independent strategic perspective for owners considering their next stage of growth."
-      }
+      "de": "Germany",
+      "ch": "Switzerland",
+      "pl": "Poland",
+      "ua": "Ukraine",
+      "us": "United States",
+      "gb": "United Kingdom",
+      "fr": "France"
     },
     "detail": {
       "about": "About the company",

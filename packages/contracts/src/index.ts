@@ -31,6 +31,8 @@ export const STAFF_PERMISSIONS = [
   'DASHBOARD_VIEW',
   'MEMBER_VIEW',
   'MEMBER_MANAGE',
+  'PARTNER_VIEW',
+  'PARTNER_MANAGE',
   'CARD_MANAGE',
   'BUSINESS_MODERATE',
   'INTRODUCTION_MANAGE',
@@ -104,6 +106,57 @@ export type StaffMfaChallengeDto = Readonly<{
   challengeToken: string;
   expiresAt: string;
 }>;
+
+export type PartnerTranslations = Record<'en' | 'ru' | 'uk', { name: string; description: string }>;
+
+export type SubscriptionStatus = 'NONE' | 'ACTIVE' | 'PAST_DUE' | 'CANCELED' | 'EXPIRED';
+
+export type PartnerDto = Readonly<{
+  id: string;
+  slug: string;
+  category: 'ADVISORY' | 'FINANCE' | 'LEGAL' | 'TECHNOLOGY';
+  country: string;
+  city: string | null;
+  phone: string | null;
+  discountPercent: number;
+  image: string;
+  translations: PartnerTranslations;
+  isActive: boolean;
+  sortOrder: number;
+  ownerId: string | null;
+  ownerName: string | null;
+  featuredTop: boolean;
+  featuredRecommended: boolean;
+  stripeCustomerId: string | null;
+  stripeSubscriptionId: string | null;
+  stripePriceId: string | null;
+  subscriptionStatus: SubscriptionStatus;
+  currentPeriodStart: string | null;
+  currentPeriodEnd: string | null;
+  cancelAtPeriodEnd: boolean;
+  createdAt: string;
+  updatedAt: string;
+}>;
+
+export type PartnerListResponseDto = Readonly<{ items: readonly PartnerDto[]; total: number }>;
+
+/** Fields writable via admin create/edit. Stripe fields are webhook-only. */
+export type PartnerInputDto = Pick<
+  PartnerDto,
+  | 'slug'
+  | 'category'
+  | 'country'
+  | 'city'
+  | 'phone'
+  | 'discountPercent'
+  | 'image'
+  | 'translations'
+  | 'isActive'
+  | 'sortOrder'
+  | 'ownerId'
+  | 'featuredTop'
+  | 'featuredRecommended'
+>;
 
 export type StaffSessionTokenDto = Readonly<{
   session: StaffSessionDto;
